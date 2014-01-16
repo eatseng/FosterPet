@@ -1,0 +1,8 @@
+
+<ul>
+<% pets.forEach(function(pet){ %>
+  <li><%=pet.get('name')%>
+    <button class="follow" pet_id="<%=pet.get('id')%>">follow pet</button>
+  </li>
+<% }); %>
+</ul>
