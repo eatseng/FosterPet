@@ -2,15 +2,48 @@
   <div class="col-xs-4">
     <div class="col-xs-offset-1">
       <form role="form">
-        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="authenticity_token" value="<%=FORM_AUTHENTICITY_TOKEN%>">
 
         <div class="form-group">
           <label for="pet_name">Pet's Name</label>
-          <input id="pet_name" name="pet[name]" value="pet.get('name')"
+          <input id="pet_name" name="pet[name]" value="<%=pet.get('name')%>">
+        </div>
+
+        <div class="form-group">
+          <label for="pet_likes">Likes</label>
+          <input id="pet_likes" name="pet[likes]" value="<%=pet.get('likes')%>">
+        </div>
+
+        <div class="form-group">
+          <label for="pet_dislikes">Dislikes</label>
+          <input id="pet_dislikes" name="pet[dislikes]" value="<%=pet.get('dislikes')%>">
         </div>
 
 
-        <input type="submit" value="<%= message %>" class="btn btn-parimary">
+        <div class="form-group">
+          <label for="pet_age">Age</label>
+          <input id="pet_age" name="pet[age]" value="<%=pet.get('age')%>">
+        </div>
+
+
+        <div class="form-group">
+          <label for="pet_gender">Gender</label>
+          <input id="pet_gender" name="pet[gender]" value="<%=pet.get('gender')%>">
+        </div>
+
+        <div class="form-group">
+          <label for="pet_size">Size</label>
+          <input id="pet_size" name="pet[size]" value="<%=pet.get('size')%>">
+        </div>
+
+        <div class="form-group">
+          <label for="pet_about">About</label>
+          <textarea id="pet_about" name="pet[about]" value="<%=pet.get('about')%>">
+          </textarea>
+        </div>
+
+
+        <input type="submit" value="Add Pet" class="btn btn-parimary">
       </form>
     </div>
   </div>

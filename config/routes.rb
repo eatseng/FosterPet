@@ -4,12 +4,14 @@ FosterPet::Application.routes.draw do
   get "/about", :to => "static_pages#about"
 
 
-  resources :users, :only => [:create, :new, :show]
+  resources :users, :only => [:index, :create, :new, :show]
   resource :session, :only => [:create, :destroy, :new]
 
   resources :pets do
     resources :followings, :only => [:create, :destroy]
   end
+
+  resources :posts, :only => [:index, :create, :destroy]
 
   root :to => "static_pages#root"
   #root :to => "users#show"

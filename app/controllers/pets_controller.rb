@@ -5,12 +5,26 @@ class PetsController < ApplicationController
   end
 
   def create
-    p "A:LKSDJ:LDFJDS"
-    p params
+    @pet = Pet.new(params[:pet])
+    if @pet.save
+      render :json => @pet
+    else
+      render :json => {errors: @pet.errors.full_message}, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @pet = Pet.find(params[:id])
+    if @pet.update_attributes(params[:pet])
+      render :json => @pet
+    else
+      render :json => {errors: @pet.errors.full_message}, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    p "A:LKSDJ:LDFJDS"
-    p params
+    @pet = Pet.find(params[:id])
+    render :json => @pet
+    @pet.destroy
   end
 end

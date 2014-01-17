@@ -1,4 +1,4 @@
-FosterPet.Views.HomeView = Backbone.View.extend({
+FosterPet.Views.PetsHomeView = Backbone.View.extend({
   events: {
     "click button.follow" : "follow"
   },

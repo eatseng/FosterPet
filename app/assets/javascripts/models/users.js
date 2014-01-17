@@ -1,0 +1,1 @@
+FosterPet.Models.User = Backbone.Model.extend({})

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-4">
+    <div class="col-xs-offset-1">
+      <form role="form">
+        <input type="hidden" name="authenticity_token" value="<%=FORM_AUTHENTICITY_TOKEN%>">
+
+        <div class="form-group">
+          <label for="post_body">Post Content</label>
+          <textarea id="post_body" name="post[body]"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="post_photo">Photo URL</label>
+          <input id="post_photo" name="post[photo_url]">
+        </div>
+
+        <%pets.forEach(function(pet) { %>
+          <input type="checkbox" name="postshare[pet_id][]" value="<%=pet.get('id')%>" id="<%=pet.get('name')%>">
+          <label for="<%=pet.get('name')%>"><%=pet.get('name')%></label>
+          <br  />
+          <% }); %>
+
+        <%users.forEach(function(user) { %>
+          <input type="checkbox" name="postshare[user_id][]" value="<%=user.get('id')%>" id="<%=user.get('username')%>">
+          <label for="<%=user.get('username')%>"><%=user.get('username')%></label>
+          <br  />
+        <% }); %>
+
+        <input type="submit" value="Add Post" class="btn btn-parimary">
+      </form>
+    </div>
+  </div>
+</div>

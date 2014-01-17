@@ -4,9 +4,14 @@ class User < ActiveRecord::Base
 
   has_many :followings
   has_many :following_pets, :through => :followings, :source => :pet
-  has_many :posts
+  has_many(
+    :authored_posts,
+    :class_name => "Posts",
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
   has_many :postshares, :as => :postable
-  has_many :social_posts, :through => :postshares, :source => :post
+  has_many :posts, :through => :postshares, :source => :post
   has_many :testimonials
 
   validates :password_digest, :presence => { :message => "Password can't be blank" }
