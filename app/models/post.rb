@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :photo_url, :user_id
 
-  has_many :postshares
+  has_many :postshares, :dependent => :destroy
 
   validates :user_id, :presence => true
   validate :photo_or_body

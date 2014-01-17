@@ -1,4 +1,6 @@
 class PetsController < ApplicationController
+  before_filter :require_current_user!
+
   def index
     @pets = Pet.all
     render :json => @pets

@@ -1,18 +1,22 @@
 class PostsController < ApplicationController
+  before_filter :require_current_user!
+
   def index
     render :json => Post.all
   end
 
   def create
-    p "LKDSJF:LSDKJFL:KS"
-    p params
-    @commentable = create_postshare_hash
-    p "AFTER"
-    p params
-
-    post = post.new(params[:post])
-    post.postshares.new()
-
+    begin
+      ActiveRecord::Base.transaction do 
+        @postable.map do |base|
+          base.posts.new(params[:post])
+          base.save
+        end
+      end
+      render :json => {success: "post saved"}
+    rescue ActiveRecord::RecordInvalid => invalid
+      render :json => {errors: "errors saving post"}, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -21,16 +25,15 @@ class PostsController < ApplicationController
 
   private
 
-  def create_postshare_hash
-    i = 0
-    params['postshares']
+  def find_postable
+    arr = []
     params[:postshare].each do |name, value|
       value.each do |val|
         if name =~ /(.+)_id$/
-          params['postshares'][i.to_s] = {:postable_id => val.to_s, :postable_type => $1.classify.constantize}
-          i += 1
+          arr.push($1.classify.constantize.find(val))
         end
       end
     end
+    arr
   end
 end

@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_filter :require_current_user!, :only => [:root]
+
   def home
   end
 

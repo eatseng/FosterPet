@@ -1,4 +1,6 @@
 class FollowingsController < ApplicationController
+  before_filter :require_current_user!
+
   def create
     params['following']['user_id'] = current_user.id
     following = Following.new(params[:following])

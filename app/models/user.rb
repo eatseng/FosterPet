@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     :foreign_key => :user_id,
     :primary_key => :id
   )
-  has_many :postshares, :as => :postable
+  has_many :postshares, :as => :postable, :dependent => :destroy
   has_many :posts, :through => :postshares, :source => :post
   has_many :testimonials
 

@@ -4,7 +4,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     "pets/new" : "new",
     "pets/:id" : "show",
     "pets/:id/edit" : "edit",
-    "posts/new" : "newPost"
+    "posts/new" : "newPost",
+    "feeds/" : "feeds"
   },
 
   initialize: function(options) {
@@ -58,6 +59,20 @@ FosterPet.Routers.Router = Backbone.Router.extend({
         });
         that._swapView(renderedContent);
       });
+  },
+
+  feeds: function() {
+    debugger
+    var that = this;
+
+    this.post_collection.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.Feeds({
+          collection: that.post_collection
+        });
+        that._swapView(renderedContent);
+      }
+    });
   },
 
   _swapView: function(view) {
