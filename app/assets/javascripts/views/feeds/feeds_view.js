@@ -3,7 +3,7 @@ FosterPet.Views.Feeds = Backbone.View.extend({
 
   render: function() {
     var renderedContent = this.template ({
-      posts: this.collection
+      feeds: this.collection
     });
 
     this.$el.html(renderedContent);

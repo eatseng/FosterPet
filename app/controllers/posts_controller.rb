@@ -6,8 +6,10 @@ class PostsController < ApplicationController
   end
 
   def create
+    params['post']['user_id'] = current_user.id
+    @postable = find_postable
     begin
-      ActiveRecord::Base.transaction do 
+      ActiveRecord::Base.transaction do
         @postable.map do |base|
           base.posts.new(params[:post])
           base.save
@@ -23,7 +25,13 @@ class PostsController < ApplicationController
 
   end
 
+  def feeds
+    render :json => Post.select("DISTINCT body, photo_url")
+  end
+
+
   private
+
 
   def find_postable
     arr = []

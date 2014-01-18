@@ -7,13 +7,13 @@ class FollowingsController < ApplicationController
     if following.save
       render :json => following
     else
-      render :json => {errors: "invalid input"}, status: :unprocessable_entity
+      render :json => {errors: following.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
     following = Following.find(params[:id])
-    favorite.destroy
+    following.destroy
     render :json => following
   end
 end

@@ -1,0 +1,1 @@
+FosterPet.Models.Testimonial = Backbone.Model.extend({});

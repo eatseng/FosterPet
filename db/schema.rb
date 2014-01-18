@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20140115194149) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "followings", ["pet_id", "user_id"], :name => "index_followings_on_pet_id_and_user_id", :unique => true
+
   create_table "pets", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "photo_url"

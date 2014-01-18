@@ -1,4 +1,4 @@
 FosterPet.Collections.Posts = Backbone.Collection.extend({
-  model: FosterPet.Models.Posts,
+  model: FosterPet.Models.Post,
   url: '/posts'
 });

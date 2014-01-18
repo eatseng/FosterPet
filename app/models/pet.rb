@@ -8,4 +8,8 @@ class Pet < ActiveRecord::Base
   has_many :testimonials
 
   validates :name, :presence => true
+
+  # def as_json(options)
+  #   super(:include => :followings)
+  # end
 end

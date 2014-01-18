@@ -2,8 +2,17 @@ class PetsController < ApplicationController
   before_filter :require_current_user!
 
   def index
-    @pets = Pet.all
-    render :json => @pets
+    @pets = Pet.includes(:followings)
+
+    pets_json = []
+    @pets.each do |pet|
+      following = pet.followings.find { |f| f.user_id == current_user.id }
+      pet_json = pet.as_json
+      pet_json["following"] = following.as_json
+      pets_json << pet_json
+    end
+
+    render :json => pets_json
   end
 
   def create
@@ -30,3 +39,10 @@ class PetsController < ApplicationController
     @pet.destroy
   end
 end
+
+
+
+# json.pets do |pet|
+#   pet.id
+#   pet.following pet.followings.find { |f| f.user_id == current_user.id }
+# end

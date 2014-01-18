@@ -5,4 +5,5 @@ class Following < ActiveRecord::Base
   belongs_to :pet
 
   validates :pet_id, :user_id, :presence => true
+  validates_uniqueness_of :user_id, :scope => [:pet_id]
 end
