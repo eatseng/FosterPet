@@ -15,6 +15,7 @@
 //= require jquery.serializeJSON.min
 //= require underscore
 //= require backbone
+//= require moment-with-langs
 //= require foster_pet
 //= require_tree ../templates
 //= require_tree ./models

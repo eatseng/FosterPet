@@ -1,6 +1,6 @@
 class TestimonialsController < ApplicationController
   def index
-    render :json => Testimonial.all
+    render :json => Testimonial.where('pet_id = ?', params[:pet_id])
   end
 
   def create

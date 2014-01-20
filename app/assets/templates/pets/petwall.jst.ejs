@@ -1,0 +1,35 @@
+<div class="col-xs-10">
+  <div class="col-xs-offset-1">
+
+    <h1>PetWallView</h1>
+
+
+    <div class="pet_wall" id="pet_wall">
+      <% wallPosts.forEach(function(post) { %>
+        <div class="wall_post_body">
+          <div class="wall_post_user">
+            <img src="<%=post.get('user').get('photo_url')%>" alt="user picture" height=30px width=30px>  
+            <%=post.get('user').get('username')%>
+          </div>
+          <div class="post_time">
+            <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+          </div>
+          <div class="wall_post_data">
+            <% if(post.get('body')) { %>
+              <div class="wall_post_body">
+                <%=post.get('body')%>
+              </div>
+            <% } %>
+            <% if(post.get('photo_url')) { %>
+              <div class="wall_post_photo">
+                <img src="<%=post.get('photo_url')%>" alt="post picture" height=300px width=480px>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="pet_wall" id="pet_post"></div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ class CreatePets < ActiveRecord::Migration
       t.string :dislikes
       t.string :age
       t.string :gender
+      t.string :breed
       t.string :size
       t.string :about
 

@@ -1,0 +1,12 @@
+<form role="form">
+  <input type="hidden" name="authenticity_token" value="<%=FORM_AUTHENTICITY_TOKEN%>">
+
+  <div class="form-group">
+    <label for="testimonial_body">Testimonial Content</label>
+    <textarea id="testimonial_body" name="testimonial[body]"></textarea>
+  </div>
+
+  <input type="hidden" name="testimonial[pet_id]" value="<%=pet.get('id')%>">
+
+  <input type="submit" value="Leave a Testimonial" class="btn btn-testimonial">
+</form>

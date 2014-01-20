@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :password
   attr_reader :password
 
-  has_many :followings
+  has_many :followings, :dependent => :destroy
   has_many :following_pets, :through => :followings, :source => :pet
   has_many(
     :authored_posts,
@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :postshares, :as => :postable, :dependent => :destroy
   has_many :posts, :through => :postshares, :source => :post
   has_many :testimonials
+  has_many :taggings, :dependent => :destroy
+  has_many :photos, :through => :taggings, :source => :photo
 
   validates :password_digest, :presence => { :message => "Password can't be blank" }
   validates :password, :length => { :minimum => 6, :allow_nil => true }

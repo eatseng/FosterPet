@@ -1,4 +1,7 @@
 FosterPet.Views.Feeds = Backbone.View.extend({
+  initialize: function() {
+  },
+
   template: JST['feeds/feeds'],
 
   render: function() {

@@ -1,0 +1,17 @@
+<form role="form">
+  <input type="hidden" name="authenticity_token" value="<%=FORM_AUTHENTICITY_TOKEN%>">
+
+  <div class="form-group">
+    <label for="post_body">Post Content</label>
+    <textarea id="post_body" name="post[body]"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="post_photo">Photo URL</label>
+    <input id="post_photo" name="post[photo_url]">
+  </div>
+  
+  <input type="hidden" name="postshare[pet_id][1]" value="<%=pet.get('id')%>">
+
+  <input type="submit" value="Leave a Post" class="btn btn-post">
+</form>

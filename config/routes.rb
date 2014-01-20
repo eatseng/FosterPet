@@ -8,11 +8,13 @@ FosterPet::Application.routes.draw do
   resource :session, :only => [:create, :destroy, :new]
 
   resources :pets do
+    get "petwall", :to => "posts#petwall"
     resources :followings, :only => [:create, :destroy]
-  end
+    resources :testimonials, :only => [:index, :create]
+ end
 
   resources :posts, :only => [:index, :create, :destroy]
-  resources :testimonials, :only => [:index, :create, :destroy]
+  resources :testimonials, :only => [:destroy]
 
   root :to => "static_pages#root"
   #root :to => "users#show"

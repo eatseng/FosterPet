@@ -1,8 +1,36 @@
 <h1>FEED</h1>
-<% feeds.forEach(function(feed) { %>
-  <div>
-    <ul>
-      <%=feed.get('body')%>
-    </ul>
-  </div>
-<% }); %>
+
+<div class="feed_container">
+  <% feeds.forEach(function(feed) { %>
+    <div class="ind_feed">
+  
+      <div class="feed_post_pet">
+        <img src="<%=feed.get('pet').get('photo_url')%>" alt="pet picture" height=30px width=30px>  
+        <%=feed.get('pet').get('name')%>
+      </div>
+
+      <div class="feed_post_user">
+        <img src="<%=feed.get('user').get('photo_url')%>" alt="user picture">  
+        <%=feed.get('user').get('username')%>
+      </div>
+      
+      <div class="feed_time">
+        <%=moment(feed.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+      </div>
+
+      <div class="feed_post_data">
+        <% if(feed.get('body')) { %>
+          <div class="feed_post_body">
+            <%=feed.get('body')%>
+          </div>
+        <% } %>
+        <% if(feed.get('photo_url')) { %>
+          <div class="feed_post_photo">
+            <img src="<%=feed.get('photo_url')%>" alt="feed picture">
+          </div>
+        <% } %>
+      </div>
+
+    </div>
+  <% }); %>
+</div>

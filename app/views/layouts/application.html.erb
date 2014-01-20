@@ -8,7 +8,7 @@
 
   <script>
     var FORM_AUTHENTICITY_TOKEN = "<%=form_authenticity_token%>";
-    var CURRENT_USER_ID = "<%=current_user.id%>";
+    var CURRENT_USER_ID = "<%=current_user_id%>";
   </script>
 </head>
 <body>
@@ -26,7 +26,13 @@ $(function(){
   $('body').scrollspy({target: '.navbar-ourpage'})
   $('#logout').on('click', function(){
   });
+  $('#signIn').on('click', function(event) {
+    event.preventDefault();
+    <%="signIn = true"%>
+    $('#signInModal').modal();
+  });
   $('#signUp').on('click', function(event) {
+    <%="signIn = false"%>
     event.preventDefault();
     $('#signUpModal').modal();
   });

@@ -1,19 +1,12 @@
-
 <div class="row">
   <div class="col-xs-4">
     <div class="col-xs-offset-1">
 
-      <% method = (user.persisted? ? "put" : "post") %>
-
-      <form action="<%= action %>" method="post" role="form">
-          <input
-             name="_method"
-             type="hidden"
-             value="<%= method %>">
-          <input
-             name="authenticity_token"
-             type="hidden"
-             value="<%= form_authenticity_token %>">
+      <form action="<%= session_url %>" method="post">
+        <input
+           name="authenticity_token"
+           type="hidden"
+           value="<%= form_authenticity_token %>">
 
         <div class="form-group">
           <label for="user_username">Username</label>
@@ -22,8 +15,10 @@
              id="user_username"
              name="user[username]"
              type="text">
+           <br>
          </div>
-          <br>
+
+
         <div class="form-group">
           <label for="user_password">Password</label>
           <input
@@ -31,10 +26,10 @@
              id="user_password"
              name="user[password]"
              type="password">
+           <br>
          </div>
-          <br>
-
-          <input type="submit" value="<%= message %>" class="btn btn-parimary">
+          
+          <input type="submit" value="Log in" class="btn btn-parimary">
       </form>
     </div>
   </div>

@@ -11,11 +11,12 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
+    this.$rootNav = options.$rootNav;
     this.pet_collection = options.pets;
     this.user_collection = options.users;
     this.post_collection = options.posts;
-    this.testimonial_collection = options.testimonials;
     this.feed_collection = options.feeds;
+    this.testimonial_collection = options.testimonials;
   },
 
   home: function() {
@@ -26,7 +27,6 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   },
 
   new: function() {
-
     var renderedContent = new FosterPet.Views.PetsFormView({
       collection: this.pet_collection,
       model: new FosterPet.Models.Pet()
@@ -44,7 +44,9 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   show: function(id) {
     var renderedContent = new FosterPet.Views.PetsShowView({
       collection: this.pet_collection,
-      model: this.pet_collection.get(id)
+      post_collection: this.post_collection,
+      model: this.pet_collection.get(id),
+      id: id
     });
     this._swapView(renderedContent);
   },
@@ -65,6 +67,7 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   newTestimonial: function(pet_id) {
     var that = this;
+    this.testimonial_collection = new FosterPet.Collections.Testimonials(pet_id);
     this.testimonial_collection.fetch({
       success: function() {
         var renderedContent = new FosterPet.Views.TestimonialsFormView({
@@ -95,5 +98,12 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
-  }
+  },
+
+  // _templateNav: JST['nav_bar/navbar'],
+
+  // _swapNav: function() {
+  //   $('nav').remove();
+  //   this.$rootNav.html(this._templateNav());
+  // }
 });

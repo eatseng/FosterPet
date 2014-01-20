@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115194149) do
+ActiveRecord::Schema.define(:version => 20140118183652) do
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -29,10 +29,26 @@ ActiveRecord::Schema.define(:version => 20140115194149) do
     t.string   "dislikes"
     t.string   "age"
     t.string   "gender"
+    t.string   "breed"
     t.string   "size"
     t.string   "about"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "photoposttags", :force => true do |t|
+    t.integer  "photo_id",   :null => false
+    t.integer  "post_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.string   "photo_url",   :null => false
+    t.string   "description", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -50,6 +66,14 @@ ActiveRecord::Schema.define(:version => 20140115194149) do
     t.boolean  "show",          :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "photo_id",     :null => false
+    t.integer  "tagable_id",   :null => false
+    t.string   "tagable_type", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "testimonials", :force => true do |t|

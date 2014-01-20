@@ -6,7 +6,9 @@
         <%=pet.get('name')%>
 
         <a href="#pets/<%=pet.id%>">
-          <img src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>">
+          <img src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>"
+          height="100" width="100"
+          >
         </a>
 
          <% if (pet.get('following')) { %>
