@@ -34,10 +34,8 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
     var postModel = new FosterPet.Models.Post().set(attrs);
     this.post_collection.create(postModel, {
       success: function(){
-        console.log("posting");
         //Backbone.history.navigate("", {trigger:true});
       }
     });
-    
   }
 });

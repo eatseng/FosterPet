@@ -1,6 +1,6 @@
 class TestimonialsController < ApplicationController
   def index
-    render :json => Testimonial.where('pet_id = ?', params[:pet_id])
+    render :json => json_tag_user_model(Testimonial.where('pet_id = ?', params[:pet_id]))
   end
 
   def create
@@ -17,5 +17,19 @@ class TestimonialsController < ApplicationController
     testimonial = Testimonial.find(params[:id])
     render :json => testimonial
     testimonial.destroy
+  end
+
+  
+  private
+
+
+  def json_tag_user_model(testimonials)
+    testimonials_json = []
+    testimonials.each do |testimonial|
+      testimonial_json = testimonial.as_json
+      testimonial_json["user"] = User.find(testimonial.user_id).as_json
+      testimonials_json << testimonial_json
+    end
+    testimonials_json
   end
 end

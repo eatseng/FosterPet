@@ -3,11 +3,9 @@ FosterPet.Collections.PetWallTestimonials = Backbone.Collection.extend({
     this.pet_id = pet_id;
   },
 
-
   model: FosterPet.Models.Testimonial,
   
   url: function() {
-      return "pets/" + this.id + "/testimonials/";
+    return "pets/" + this.pet_id + "/testimonials/";
   }
-
 });
