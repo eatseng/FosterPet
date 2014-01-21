@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @users.each do |user|
       user_json = user.as_json
       user_json["following_pets"] = user.following_pets.as_json
+      user_json["owned_pets"] = user.owned_pets.as_json
       users_json << user_json
     end
 

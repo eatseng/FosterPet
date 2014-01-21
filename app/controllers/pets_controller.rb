@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
-  before_filter :require_current_user!
+  before_filter :require_current_user!, :only => [:index]
+  before_filter :require_admin_user!, :only => [:create, :update, :destroy]
 
   def index
     @pets = Pet.includes(:followings)
@@ -10,6 +11,7 @@ class PetsController < ApplicationController
       pet_json = pet.as_json
       pet_json["following"] = following.as_json
       pet_json["followers"] = pet.followers.flatten.as_json
+      pet_json["owners"] = pet.owners.flatten.as_json
       pets_json << pet_json
     end
 
@@ -35,16 +37,12 @@ class PetsController < ApplicationController
   end
 
   def destroy
+    p "DLSKJFLDSKFJ"
+    p params
     @pet = Pet.find(params[:id])
     render :json => @pet
     @pet.destroy
   end
-
-
-  def ownership
-
-  end
-
 end
 
 

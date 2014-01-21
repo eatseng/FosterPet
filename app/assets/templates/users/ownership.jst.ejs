@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-xs-10">
+    <div class="col-xs-offset-1">
+      <h4><%=user.get('username')%>'s pets</h4>
+
+      <% user.get('owned_pets').forEach(function(pet){ %>
+        <div class="col-xs-4">
+          <div class="col-xs-offset-1">
+
+            <a href="#pets/<%=pet.id%>"><%=pet.get('name')%></a>
+
+            <a href="#pets/<%=pet.id%>">
+              <img src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>"
+              height="100" width="100">
+            </a>
+          </div>
+        </div>
+      <% }); %>
+
+      <a href="/#users/<%=user.id%>">Back</a>
+    </div>
+  </div>
+</div>

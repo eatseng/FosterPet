@@ -8,6 +8,9 @@ FosterPet.Models.Pet = Backbone.Model.extend({
     if (data.followers) {
       data.followers = new FosterPet.Collections.Users(data.followers);
     }
+    if (data.owners) {
+      data.owners = new FosterPet.Collections.Users(data.owners);
+    }
     return data;
   },
 
@@ -15,6 +18,7 @@ FosterPet.Models.Pet = Backbone.Model.extend({
     var data = _.clone(this.attributes);
     data.unset('following');
     data.unset('followers');
+    data.unset('owners');
     return data;
   }
 });

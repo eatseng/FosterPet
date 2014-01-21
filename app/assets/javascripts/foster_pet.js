@@ -8,7 +8,7 @@ window.FosterPet = {
     var users = new FosterPet.Collections.Users();
     var posts = new FosterPet.Collections.Posts();
     var feeds = new FosterPet.Collections.Feeds();
-    var testimonials = new FosterPet.Collections.Testimonials();
+    //var testimonials = new FosterPet.Collections.Testimonials();
     var $rootEl = $('.content');
 
     pets.fetch({
@@ -18,8 +18,8 @@ window.FosterPet = {
           pets: pets,
           users: users,
           posts: posts,
-          feeds: feeds,
-          testimonials: testimonials
+          feeds: feeds
+          //testimonials: testimonials
         });
         Backbone.history.start();
       }

@@ -3,6 +3,10 @@ module SessionsHelper
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
+  def current_admin?
+    @current_user.account_type == "admin" if @current_user
+  end
+
   def current_user_id
     return @current_user.id if current_user
   end
@@ -19,6 +23,10 @@ module SessionsHelper
 
   def require_current_user!
     redirect_to new_session_url if current_user.nil?
+  end
+
+  def require_admin_user!
+    redirect_to new_session_url if current_admin?
   end
 
   def require_no_current_user!

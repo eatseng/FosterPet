@@ -3,7 +3,11 @@
     <div class="profile_pic">
 
       <h2 id="name"><%=user.get('username')%></h2>
+      
       <a href="/#users/<%=user.id%>/following_pets">Followings: <%=user.get('following_pets').length%></a>
+
+      <a href="/#users/<%=user.id%>/owned_pets">Owned Pets: <%=user.get('owned_pets').length%></a>
+
       <img src="<%=user.get('photo_url')%>", alt="<%=user.get('username')%>"
         height="400" width="640">
 

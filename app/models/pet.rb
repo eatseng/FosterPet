@@ -6,7 +6,7 @@ class Pet < ActiveRecord::Base
   has_many :postshares, :as => :postable, :dependent => :destroy
   has_many :posts, :through => :postshares, :source => :post
   has_many :testimonials
-  has_many :taggings, :dependent => :destroy
+  has_many :taggings, :as => :tagable, :dependent => :destroy
   has_many :photos, :through => :taggings, :source => :photo
   has_many :ownership
   has_many :owners, :through => :ownership, :source => :user

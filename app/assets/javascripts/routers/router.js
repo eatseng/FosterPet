@@ -3,7 +3,6 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     "" : "home",
     "users/new" : "newUser",
     "users/:id" : "showUser",
-    "pets/new" : "new",
     "pets/:id" : "show",
     "pets/:id/edit" : "edit",
     "posts/new" : "newPost",
@@ -11,7 +10,10 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     "feeds" : "feeds",
     "pets/:id/followers" : "followers",
     "users/:id/following_pets" : "followingPets",
-    "mypets" : "petHistory"
+    "pets/:id/owners" : "petOwners",
+    "users/:id/owned_pets" : "ownedPets",
+    "admin/pets" : "petsIndex",
+    "admin/pets/new" : "newPet"
   },
 
   initialize: function(options) {
@@ -21,7 +23,7 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     this.user_collection = options.users;
     this.post_collection = options.posts;
     this.feed_collection = options.feeds;
-    this.testimonial_collection = options.testimonials;
+    //this.testimonial_collection = options.testimonials;
   },
 
   newUser: function() {
@@ -46,14 +48,6 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   home: function() {
     var renderedContent = new FosterPet.Views.PetsHomeView({
       collection: this.pet_collection
-    });
-    this._swapView(renderedContent);
-  },
-
-  new: function() {
-    var renderedContent = new FosterPet.Views.PetsFormView({
-      collection: this.pet_collection,
-      model: new FosterPet.Models.Pet()
     });
     this._swapView(renderedContent);
   },
@@ -106,13 +100,11 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   feeds: function() {
     var that = this;
-
     this.feed_collection.fetch({
       success: function() {
         var renderedContent = new FosterPet.Views.Feeds({
           collection: that.feed_collection
         });
-
         that._swapView(renderedContent);
       }
     });
@@ -127,7 +119,6 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   followingPets: function(id) {
     var that = this;
-
     this.user_collection.fetch({
       success: function() {
         var renderedContent = new FosterPet.Views.UserFollowingView({
@@ -138,17 +129,50 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     });
   },
 
-  petHistory: function() {
+  petOwners: function(id) {
+    var that = this;
+    this.pet_collection.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.PetOwnerView({
+          model: that.pet_collection.get(id)
+        });
+        that._swapView(renderedContent);
+      }
+    });
+  },
 
+  ownedPets: function(id) {
+    var that = this;
+    this.user_collection.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.UserOwnerView({
+          model: that.user_collection.get(id)
+        });
+        that._swapView(renderedContent);
+      }
+    });
+  },
 
+  petsIndex: function() {
+    var renderedContent = new FosterPet.Views.PetIndexView({
+      collection: this.pet_collection
+    });
+    this._swapView(renderedContent);
+  },
 
+  newPet: function() {
+    var renderedContent = new FosterPet.Views.PetsFormView({
+      collection: this.pet_collection,
+      model: new FosterPet.Models.Pet()
+    });
+    this._swapView(renderedContent);
   },
 
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
-  },
+  }
 
   // _templateNav: JST['nav_bar/navbar'],
 
