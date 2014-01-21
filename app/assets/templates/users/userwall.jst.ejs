@@ -1,0 +1,78 @@
+<div class="col-xs-10">
+  <div class="col-xs-offset-1">
+
+    <h1>UserWallView</h1>
+
+
+    <div class="pet_wall" id="pet_wall">
+      <% wallPosts.forEach(function(post) { %>
+        <div class="wall_post_body">
+
+          <% if( post.get('user_id') == user.id ) { %>
+            <div class="wall_post_author">
+              <img src="<%=user.get('photo_url')%>" alt="user picture" height=30px width=30px>
+              <%=user.get('username')%> Wrote On: >
+            </div>
+          <% } else { %>
+            <div class="wall_post_author">
+              <a href="/#users/<%=post.get('author').first().get('id')%>">
+                <img src="<%=post.get('author').first().get('photo_url')%>"
+                  alt="author picture" height=30px width=30px>
+              </a>
+              <a href="/#users/<%=post.get('author').first().get('id')%>">
+                <%=post.get('author').first().get('username')%>
+              </a> Wrote On: >
+            </div>
+            <div class="user_recipients">
+              <img src="<%=user.get('photo_url')%>" alt="user picture" height=30px width=30px>
+              <%=user.get('username')%>
+            </div>
+          <% } %>
+
+          <% if (post.get('user')) { %>
+            <div class="user_recipients">
+              <% post.get('user').forEach(function(user) { %>
+                <a href="/#users/<%=user.id%>"><%=user.get('username')%></a>
+
+                <a href="/#users/<%=user.id%>">
+                <img src="<%=user.get('photo_url')%>" alt="user picture" height=30px width=30px>
+                </a>
+              <% }) %>
+            </div>
+          <% } %>
+
+          <% if (post.get('pet')) { %>
+            <div class="pet_recipients">
+            <% post.get('pet').forEach(function(pet){ %>
+              <a href="/#pets/<%=pet.id%>"><%=pet.get('name')%></a>
+
+              <a href="/#pets/<%=pet.id%>">
+              <img src="<%=pet.get('photo_url')%>" alt="pet picture" height=30px width=30px>
+              </a>
+            <% }) %>
+            </div>
+           <% } %>
+
+
+          <div class="post_time">
+            <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+          </div>
+          <div class="wall_post_data">
+            <% if(post.get('body')) { %>
+              <div class="wall_post_body">
+                <%=user.get('username')%> said: "<%=post.get('body')%>"
+              </div>
+            <% } %>
+            <% if(post.get('photo_url')) { %>
+              <div class="wall_post_photo">
+                <img src="<%=post.get('photo_url')%>" alt="post picture" height=300px width=480px>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="pet_wall" id="pet_post"></div>
+  </div>
+</div>

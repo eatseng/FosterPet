@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :following_pets, :through => :followings, :source => :pet
   has_many(
     :authored_posts,
-    :class_name => "Posts",
+    :class_name => "Post",
     :foreign_key => :user_id,
     :primary_key => :id
   )
@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :testimonials
   has_many :taggings, :dependent => :destroy
   has_many :photos, :through => :taggings, :source => :photo
+  has_many :ownerships
+  has_many :owned_pets, :through => :ownerships, :source => :pet
 
   validates :password_digest, :presence => { :message => "Password can't be blank" }
   validates :password, :length => { :minimum => 6, :allow_nil => true }

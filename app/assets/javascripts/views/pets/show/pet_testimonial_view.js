@@ -15,7 +15,7 @@ FosterPet.Views.PetTestimonialView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-        
+
     this.petTestimonials.fetch({
       success: function() {
         var renderedContent = that.template({
@@ -23,7 +23,7 @@ FosterPet.Views.PetTestimonialView = Backbone.View.extend({
         });
 
         that.$el.html(renderedContent);
-      
+
         that.$('.pet_testimoinal_form#pet_testimonial').html(that.templateForm({
           pet: that.pet
         }));
@@ -36,7 +36,6 @@ FosterPet.Views.PetTestimonialView = Backbone.View.extend({
     event.preventDefault();
     var attrs = $('form').serializeJSON();
     var testimonialModel = new FosterPet.Models.Testimonial().set(attrs);
-    debugger
     this.petTestimonials.create(testimonialModel, {
       success: function(){
         //Backbone.history.navigate("", {trigger:true});

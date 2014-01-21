@@ -3,7 +3,7 @@
     <div class="col-xs-4">
       <div class="col-xs-offset-1">
 
-        <%=pet.get('name')%>
+        <a href="/#pets/<%=pet.id%>"><%=pet.get('name')%></a>
 
         <a href="#pets/<%=pet.id%>">
           <img src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>"

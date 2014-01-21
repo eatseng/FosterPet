@@ -1,19 +1,30 @@
 <h1>FEED</h1>
 
 <div class="feed_container">
-  <% feeds.forEach(function(feed) { %>
+  <% feeds.each(function(feed) { %>
     <div class="ind_feed">
-  
+
       <div class="feed_post_pet">
-        <img src="<%=feed.get('pet').get('photo_url')%>" alt="pet picture" height=30px width=30px>  
-        <%=feed.get('pet').get('name')%>
+        <a href="#pets/<%=feed.get('pet').first().get('id')%>">
+          <img src="<%=feed.get('pet').first().get('photo_url')%>"
+                alt="pet picture" height=30px width=30px>
+        </a>
+        <a href="#pets/<%=feed.get('pet').first().get('id')%>">
+          <%=feed.get('pet').first().get('name')%>
+        </a>
+           received a post from >
       </div>
 
       <div class="feed_post_user">
-        <img src="<%=feed.get('user').get('photo_url')%>" alt="user picture">  
-        <%=feed.get('user').get('username')%>
+        <a href="#users/<%=feed.get('user').first().get('id')%>">
+          <img src="<%=feed.get('user').first().get('photo_url')%>"
+              alt="user picture" height=30px width=30px>
+        </a>
+        <a href="#users/<%=feed.get('user').first().get('id')%>">
+          <%=feed.get('user').first().get('username')%>
+        </a>
       </div>
-      
+
       <div class="feed_time">
         <%=moment(feed.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
       </div>
@@ -21,12 +32,12 @@
       <div class="feed_post_data">
         <% if(feed.get('body')) { %>
           <div class="feed_post_body">
-            <%=feed.get('body')%>
+            <%=feed.get('user').first().get('username')%> says: "<%=feed.get('body')%>"
           </div>
         <% } %>
         <% if(feed.get('photo_url')) { %>
           <div class="feed_post_photo">
-            <img src="<%=feed.get('photo_url')%>" alt="feed picture">
+            <img src="<%=feed.get('photo_url')%>" alt="feed picture" height=300px width=480px>
           </div>
         <% } %>
       </div>

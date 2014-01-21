@@ -8,8 +8,15 @@
       <% wallPosts.forEach(function(post) { %>
         <div class="wall_post_body">
           <div class="wall_post_user">
-            <img src="<%=post.get('user').get('photo_url')%>" alt="user picture" height=30px width=30px>  
-            <%=post.get('user').get('username')%>
+
+            <a href="/#users/<%=post.get('author').first().get('id')%>">
+              <img src="<%=post.get('author').first().get('photo_url')%>"
+                  alt="user picture" height=30px width=30px>
+            </a>
+
+            <a href="/#users/<%=post.get('author').first().get('id')%>">
+              <%=post.get('author').first().get('username')%>
+            </a>
           </div>
           <div class="post_time">
             <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>

@@ -10,6 +10,11 @@
         </div>
 
         <div class="form-group">
+          <label for="pet_photo">Photo Url</label>
+          <input id="pet_photo" name="pet[photo_url]" value="<%=pet.get('photo_url')%>">
+        </div>
+
+        <div class="form-group">
           <label for="pet_likes">Likes</label>
           <input id="pet_likes" name="pet[likes]" value="<%=pet.get('likes')%>">
         </div>
@@ -25,6 +30,10 @@
           <input id="pet_age" name="pet[age]" value="<%=pet.get('age')%>">
         </div>
 
+        <div class="form-group">
+          <label for="pet_breed">Breed</label>
+          <input id="pet_breed" name="pet[breed]" value="<%=pet.get('breed')%>">
+        </div>
 
         <div class="form-group">
           <label for="pet_gender">Gender</label>

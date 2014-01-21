@@ -1,5 +1,5 @@
 class Pet < ActiveRecord::Base
-  attr_accessible :about, :age, :dislikes, :gender, :likes, :name, :photo_url, :size
+  attr_accessible :about, :age, :dislikes, :gender, :likes, :breed, :name, :photo_url, :size, :owner_id
 
   has_many :followings, :dependent => :destroy
   has_many :followers, :through => :followings, :source => :user
@@ -8,6 +8,8 @@ class Pet < ActiveRecord::Base
   has_many :testimonials
   has_many :taggings, :dependent => :destroy
   has_many :photos, :through => :taggings, :source => :photo
+  has_many :ownership
+  has_many :owners, :through => :ownership, :source => :user
 
   validates :name, :presence => true
 

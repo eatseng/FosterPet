@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140118183652) do
+ActiveRecord::Schema.define(:version => 20140121012100) do
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(:version => 20140118183652) do
   end
 
   add_index "followings", ["pet_id", "user_id"], :name => "index_followings_on_pet_id_and_user_id", :unique => true
+
+  create_table "ownerships", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "pet_id",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ownerships", ["pet_id", "user_id"], :name => "index_ownerships_on_pet_id_and_user_id", :unique => true
 
   create_table "pets", :force => true do |t|
     t.string   "name",       :null => false
@@ -32,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20140118183652) do
     t.string   "breed"
     t.string   "size"
     t.string   "about"
+    t.integer  "owner_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

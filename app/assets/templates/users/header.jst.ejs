@@ -1,0 +1,12 @@
+<div class="col-xs-10">
+  <div class="col-xs-offset-1">
+    <div class="profile_pic">
+
+      <h2 id="name"><%=user.get('username')%></h2>
+      <a href="/#users/<%=user.id%>/following_pets">Followings: <%=user.get('following_pets').length%></a>
+      <img src="<%=user.get('photo_url')%>", alt="<%=user.get('username')%>"
+        height="400" width="640">
+
+    </div>
+  </div>
+</div>

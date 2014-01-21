@@ -10,6 +10,7 @@ class CreatePets < ActiveRecord::Migration
       t.string :breed
       t.string :size
       t.string :about
+      t.integer :owner_id
 
       t.timestamps
     end

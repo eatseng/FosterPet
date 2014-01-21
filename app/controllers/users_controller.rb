@@ -3,7 +3,16 @@ class UsersController < ApplicationController
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def index
-    render :json => User.all
+    @users = User.includes(:following_pets)
+
+    users_json = []
+    @users.each do |user|
+      user_json = user.as_json
+      user_json["following_pets"] = user.following_pets.as_json
+      users_json << user_json
+    end
+
+    render :json => users_json
   end
 
   def create

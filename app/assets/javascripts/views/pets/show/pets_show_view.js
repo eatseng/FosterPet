@@ -11,10 +11,7 @@ FosterPet.Views.PetsShowView = Backbone.View.extend({
   templateStructure: JST['pets/show'],
 
   render: function() {
-    var renderedContent = this.templateStructure({
-      pet: this.model
-    });
-    this.$el.html(renderedContent);
+    this.$el.html(this.templateStructure());
 
     this.headerView = new FosterPet.Views.PetHeaderView({
       $el: this.$('.top_header'),

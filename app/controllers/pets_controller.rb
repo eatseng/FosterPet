@@ -9,6 +9,7 @@ class PetsController < ApplicationController
       following = pet.followings.find { |f| f.user_id == current_user.id }
       pet_json = pet.as_json
       pet_json["following"] = following.as_json
+      pet_json["followers"] = pet.followers.flatten.as_json
       pets_json << pet_json
     end
 
@@ -38,7 +39,16 @@ class PetsController < ApplicationController
     render :json => @pet
     @pet.destroy
   end
+
+
+  def ownership
+
+  end
+
 end
+
+
+
 
 
 
