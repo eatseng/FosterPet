@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121012100) do
+ActiveRecord::Schema.define(:version => 20140121180949) do
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -46,17 +46,10 @@ ActiveRecord::Schema.define(:version => 20140121012100) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "photoposttags", :force => true do |t|
-    t.integer  "photo_id",   :null => false
-    t.integer  "post_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "photos", :force => true do |t|
     t.integer  "user_id",     :null => false
     t.string   "photo_url",   :null => false
-    t.string   "description", :null => false
+    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -78,13 +71,22 @@ ActiveRecord::Schema.define(:version => 20140121012100) do
     t.datetime "updated_at",                       :null => false
   end
 
-  create_table "taggings", :force => true do |t|
-    t.integer  "photo_id",     :null => false
-    t.integer  "tagable_id",   :null => false
-    t.string   "tagable_type", :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "publicshares", :force => true do |t|
+    t.integer  "post_id",         :null => false
+    t.integer  "publicable_id",   :null => false
+    t.string   "publicable_type", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "photo_id",   :null => false
+    t.integer  "post_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "taggings", ["photo_id", "post_id"], :name => "index_taggings_on_photo_id_and_post_id", :unique => true
 
   create_table "testimonials", :force => true do |t|
     t.string   "body",       :null => false

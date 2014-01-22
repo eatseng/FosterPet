@@ -17,6 +17,8 @@ FosterPet::Application.routes.draw do
     resources :testimonials, :only => [:index, :create]
  end
 
+  get "/publicshare", :to => "postshares#publicshare"
+  resources :postshares, :only => [:index, :create, :destroy]
   resources :posts, :only => [:index, :create, :destroy]
   resources :testimonials, :only => [:destroy]
 

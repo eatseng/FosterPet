@@ -7,7 +7,15 @@ class PostsController < ApplicationController
 
  def create
     params['post']['user_id'] = current_user.id
+    #params['photo']['user_id'] = current_user.id
+    params['photos'] = []
+    params['photo'].each_with_index { |param, i| params['photos'][i] = params }
+
+    p "SLDKFJL:SDFJSDKLFJ"
+    p params
+
     post = Post.new(params[:post])
+    post.photos.new(params[:photo])
     if post.save
       begin
         ActiveRecord::Base.transaction do
@@ -25,6 +33,7 @@ class PostsController < ApplicationController
         render :json => {errors: "errors saving post"}, status: :unprocessable_entity
       end
     else
+      p
       render :json => {errors: "ERRORS"}, status: :unprocessable_entity
     end
 
@@ -50,33 +59,36 @@ class PostsController < ApplicationController
   end
 
   def feeds
+
     uniqPosts = []
-    posts = current_user.following_pets
-                        .map{ |pet| json_tag_pet_model(pet.posts, pet, uniqPosts) }
-                        .flatten.uniq
+    posts = current_user.following_pets.includes(:public_posts => :author)
+                        .map{ |pet| json_tag_pet_model(pet.public_posts, pet, uniqPosts) }
+                        .flatten
 
     render :json => posts
   end
 
   def petwall
-    @posts = Pet.find(params[:pet_id]).posts
+    @posts = Pet.find(params[:pet_id]).public_posts.includes(:author)
     render :json => json_tag_user_model(@posts)
   end
 
   def userwall
-    @posts_json = json_tag_user_model(User.find(params[:user_id]).posts)
-    @posts_json.concat(json_tag_recipients(Post.where('user_id = ?', params[:user_id])))
+    @posts_json = json_tag_user_model(User.find(params[:user_id]).public_posts.includes(:author))
+    @posts_json.concat(json_tag_recipients(Post.where('user_id = ?', params[:user_id])
+                                                .includes(:publicshares => :publicable) ))
     render :json => @posts_json
   end
 
 
   private
 
+
   def json_tag_user_model(posts)
     posts_json = []
     posts.each do |post|
       post_json = post.as_json
-      post_json["author"] = User.find(post.user_id).as_json
+      post_json["author"] = post.author.as_json
       posts_json << post_json
     end
     posts_json
@@ -89,7 +101,7 @@ class PostsController < ApplicationController
         uniqPosts << post
         post_json = post.as_json
         post_json["pet"] = pet.as_json
-        post_json["user"] = User.find(post.user_id).as_json
+        post_json["user"] = post.author.as_json
         posts_json << post_json
       end
     end
@@ -102,11 +114,11 @@ class PostsController < ApplicationController
       post_json = post.as_json
       post_json["pet"] = []
       post_json["user"] = []
-      recipients = post.postshares.each do |postshare|
-        if postshare.postable_type == "Pet"
-          post_json["pet"] << postshare.postable
+      recipients = post.publicshares.each do |publicshare|
+        if publicshare.publicable_type == "Pet"
+          post_json["pet"] << publicshare.publicable
         else
-          post_json["user"] << postshare.postable
+          post_json["user"] << publicshare.publicable
         end
       end
       posts_json << post_json

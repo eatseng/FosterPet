@@ -9,8 +9,6 @@ FosterPet.Models.Post = Backbone.Model.extend({
     if (data.pet) {
       data.pet = new FosterPet.Collections.Pets(data.pet);
     }
-
-
     return data;
   },
 
@@ -27,6 +25,7 @@ FosterPet.Models.Post = Backbone.Model.extend({
 
   toJson: function() {
     var data = _.clone(this.attributes);
+    data.unset('author');
     data.unset('user');
     data.unset('pet');
     return data;

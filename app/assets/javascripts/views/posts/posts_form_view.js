@@ -1,6 +1,7 @@
 FosterPet.Views.PostsFormView = Backbone.View.extend({
   events: {
-    "click .btn": "submit"
+    "click .btn-submit-post": "submit",
+    "click .btn-add-photo": "addPhoto"
   },
 
   initialize: function(options) {
@@ -9,15 +10,24 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     this.post_collection = options.post_collection;
   },
 
+  //formStructure: JST['posts/form_structure'],
   template: JST['posts/form'],
+  photoTemplate: JST['photo/form'],
 
   render: function() {
+    //this.$el.html(this.formStructure());
+
+
     var renderedContent = this.template({
       pets: this.pet_collection,
       users: this.user_collection
     });
 
     this.$el.html(renderedContent);
+    //this.$('.form').html(renderedContent);
+    //this.$('.photo').html(this.photoTemplate());
+
+
     return this;
   },
 
@@ -25,6 +35,7 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     event.preventDefault();
     var attrs = $('form').serializeJSON();
 
+    debugger
     this.model.set(attrs);
     if (this.model.isNew()) {
       this.post_collection.create(this.model, {
@@ -39,5 +50,10 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
         }
       });
     }
+  },
+
+  addPhoto: function(event) {
+    event.preventDefault();
+    $('.photo_container').append(this.photoTemplate());
   }
 });

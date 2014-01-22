@@ -15,9 +15,11 @@ class User < ActiveRecord::Base
   )
   has_many :postshares, :as => :postable, :dependent => :destroy
   has_many :posts, :through => :postshares, :source => :post
+  has_many :publicshares, :as => :publicable, :dependent => :destroy
+  has_many :public_posts, :through => :publicshares, :source => :post
   has_many :testimonials
-  has_many :taggings, :dependent => :destroy
-  has_many :photos, :through => :taggings, :source => :photo
+  has_many :photos, :through => :posts, :source => :photos
+  has_many :public_photos, :through => :public_posts, :source => :photos
   has_many :ownerships
   has_many :owned_pets, :through => :ownerships, :source => :pet
 

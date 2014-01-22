@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def index
-    @users = User.includes(:following_pets)
+    @users = User.includes(:following_pets, :owned_pets)
 
     users_json = []
     @users.each do |user|

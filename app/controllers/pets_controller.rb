@@ -3,7 +3,7 @@ class PetsController < ApplicationController
   before_filter :require_admin_user!, :only => [:create, :update, :destroy]
 
   def index
-    @pets = Pet.includes(:followings)
+    @pets = Pet.includes(:followings, :followers, :owners)
 
     pets_json = []
     @pets.each do |pet|
@@ -37,8 +37,6 @@ class PetsController < ApplicationController
   end
 
   def destroy
-    p "DLSKJFLDSKFJ"
-    p params
     @pet = Pet.find(params[:id])
     render :json => @pet
     @pet.destroy

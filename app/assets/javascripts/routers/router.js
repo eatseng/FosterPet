@@ -13,7 +13,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     "pets/:id/owners" : "petOwners",
     "users/:id/owned_pets" : "ownedPets",
     "admin/pets" : "petsIndex",
-    "admin/pets/new" : "newPet"
+    "admin/pets/new" : "newPet",
+    "postApprove" : "postApprove"
   },
 
   initialize: function(options) {
@@ -23,7 +24,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     this.user_collection = options.users;
     this.post_collection = options.posts;
     this.feed_collection = options.feeds;
-    //this.testimonial_collection = options.testimonials;
+    this.approve_collection = options.approve;
+    this.public_collection = options.publicposts;
   },
 
   newUser: function() {
@@ -60,13 +62,18 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   },
 
   show: function(id) {
-    var renderedContent = new FosterPet.Views.PetsShowView({
-      collection: this.pet_collection,
-      post_collection: this.post_collection,
-      model: this.pet_collection.get(id),
-      id: id
+    var that = this;
+    this.pet_collection.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.PetsShowView({
+          collection: that.pet_collection,
+          post_collection: that.post_collection,
+          model: that.pet_collection.get(id),
+          id: id
+        });
+        that._swapView(renderedContent);
+      }
     });
-    this._swapView(renderedContent);
   },
 
   newPost: function() {
@@ -166,6 +173,21 @@ FosterPet.Routers.Router = Backbone.Router.extend({
       model: new FosterPet.Models.Pet()
     });
     this._swapView(renderedContent);
+  },
+
+  postApprove: function() {
+    var renderedContent = new FosterPet.Views.PostsApproveView({
+      public_collection: this.public_collection,
+      approve_collection: this.approve_collection,
+    });
+    this._swapView(renderedContent);
+    // var that = this;
+  //   this.post_collection.fetch({
+  //     var renderedContent = new FosterPet.Views.PostsApproveView({
+  //       collection: that.post_collection
+  //     });
+  //     that._swapView(renderedContent);
+  //   });
   },
 
   _swapView: function(view) {

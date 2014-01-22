@@ -1,8 +1,9 @@
 class Tagging < ActiveRecord::Base
-  attr_accessible :photo_id, :tagable_id, :tagable_type, :pet_id, :user_id
+  attr_accessible :photo_id, :post_id
 
-  belongs_to :tagable, :polymorphic => true
+  belongs_to :post
   belongs_to :photo
 
-  validates :photo_id, :tagable_id, :tagable_type, :presence => true
+  validates :photo_id, :post_id, :presence => true
+  validates_uniqueness_of :photo_id, :scope => [:post_id]
 end

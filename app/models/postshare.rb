@@ -5,4 +5,5 @@ class Postshare < ActiveRecord::Base
   belongs_to :post
 
   validates :postable_id, :postable_type, :post_id, :presence => true
+  validates_uniqueness_of :post_id, :scope => [:postable_id, :postable_type]
 end
