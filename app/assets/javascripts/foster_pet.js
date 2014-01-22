@@ -8,9 +8,9 @@ window.FosterPet = {
     var users = new FosterPet.Collections.Users();
     var posts = new FosterPet.Collections.Posts();
     var feeds = new FosterPet.Collections.Feeds();
-    //var testimonials = new FosterPet.Collections.Testimonials();
     var approve = new FosterPet.Collections.ApprovePosts();
-    var publicposts = new FosterPet.Collections.PublicShares();
+    var publicPosts = new FosterPet.Collections.PublicShares();
+    var userGallery = new FosterPet.Collections.UserGalleryPhotos();
     var $rootEl = $('.content');
 
     pets.fetch({
@@ -22,8 +22,8 @@ window.FosterPet = {
           posts: posts,
           feeds: feeds,
           approve: approve,
-          publicposts: publicposts
-          //testimonials: testimonials
+          publicPosts: publicPosts,
+          userGallery: userGallery   
         });
         Backbone.history.start();
       }

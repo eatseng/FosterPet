@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   has_many :testimonials
   has_many :photos, :through => :posts, :source => :photos
   has_many :public_photos, :through => :public_posts, :source => :photos
+  has_many(
+    :posted_photos,
+    :class_name => "Photo"
+  )
   has_many :ownerships
   has_many :owned_pets, :through => :ownerships, :source => :pet
 

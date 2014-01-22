@@ -7,23 +7,23 @@ class PostsController < ApplicationController
 
  def create
     params['post']['user_id'] = current_user.id
-    #params['photo']['user_id'] = current_user.id
-    params['photos'] = []
-    params['photo'].each_with_index { |param, i| params['photos'][i] = params }
-
-    p "SLDKFJL:SDFJSDKLFJ"
-    p params
 
     post = Post.new(params[:post])
-    post.photos.new(params[:photo])
     if post.save
       begin
         ActiveRecord::Base.transaction do
+          unless params[:photo].all? {|param| param['photo_url'] == ""}
+            params[:photo].map do |param|
+              post.photos.new(param)
+              post.save
+            end
+          end
+
           find_postable.map do |base|
             post.postshares.new({
               :postable_type => base.class.name,
               :postable_id => base.id,
-              :post_id => (Post.last.id + 1)
+              #:post_id => (Post.last.id + 1)
               })
             post.save
           end
@@ -31,9 +31,9 @@ class PostsController < ApplicationController
         render :json => {success: "post saved"}
       rescue ActiveRecord::RecordInvalid => invalid
         render :json => {errors: "errors saving post"}, status: :unprocessable_entity
+        post.destroy
       end
     else
-      p
       render :json => {errors: "ERRORS"}, status: :unprocessable_entity
     end
 

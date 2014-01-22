@@ -1,7 +1,6 @@
 FosterPet.Views.PetsShowView = Backbone.View.extend({
   initialize: function(options) {
     this.post_collection = options.post_collection;
-    this.testimonial_collection = options.testimonial_collection;
   },
 
   events: {
@@ -15,7 +14,8 @@ FosterPet.Views.PetsShowView = Backbone.View.extend({
 
     this.headerView = new FosterPet.Views.PetHeaderView({
       $el: this.$('.top_header'),
-      model: this.model
+      model: this.model,
+      id: this.id
     });
 
     this.petWall = new FosterPet.Views.PetWallView({

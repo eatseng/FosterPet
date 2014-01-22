@@ -35,7 +35,6 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     event.preventDefault();
     var attrs = $('form').serializeJSON();
 
-    debugger
     this.model.set(attrs);
     if (this.model.isNew()) {
       this.post_collection.create(this.model, {

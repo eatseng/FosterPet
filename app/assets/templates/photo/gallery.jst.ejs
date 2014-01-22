@@ -1,0 +1,19 @@
+<div class="row">
+  <% photos.forEach(function(photo){ %>
+    <div class="col-xs-4">
+      <div class="col-xs-offset-1">
+
+        <a href="/#pets/<%id%>/gallery/<%=photo.id%>"><%=photo.get('description')%></a>
+
+        <a href="/#pets/<%id%>/gallery/<%=photo.id%>">
+          <img src="<%=photo.get('photo_url')%>" alt="<%=photo.get('description')%>"
+          height="100" width="100"
+          >
+        </a>
+
+      </div>
+    </div>
+  <% }); %>
+  <button class="back">Back</button>
+</div>
+

@@ -1,0 +1,1 @@
+FosterPet.Models.Photo = Backbone.Model.extend({});

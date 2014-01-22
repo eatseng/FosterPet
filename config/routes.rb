@@ -7,12 +7,14 @@ FosterPet::Application.routes.draw do
   resources :users, :only => [:index, :create, :new, :show] do
     get "userwall", :to => "posts#userwall"
     get "ownership", :to => "pets#userownership"
+    get "gallery", :to => "users#gallery"
   end
   resource :session, :only => [:create, :destroy, :new]
 
   resources :pets do
     get "petwall", :to => "posts#petwall"
     get "ownership", :to => "pets#petownership"
+    get "gallery", :to => "pets#gallery"
     resources :followings, :only => [:create, :destroy]
     resources :testimonials, :only => [:index, :create]
  end

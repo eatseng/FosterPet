@@ -4,16 +4,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.includes(:following_pets, :owned_pets)
+    render :json => user_data_to_json(@users)
+  end
 
-    users_json = []
-    @users.each do |user|
-      user_json = user.as_json
-      user_json["following_pets"] = user.following_pets.as_json
-      user_json["owned_pets"] = user.owned_pets.as_json
-      users_json << user_json
-    end
-
-    render :json => users_json
+  def gallery
+    @user = User.includes(:photos, :public_photos).find(params[:user_id])
+    render :json => user_photo_to_json(@user)
   end
 
   def create
@@ -37,5 +33,27 @@ class UsersController < ApplicationController
     else
       redirect_to user_url(current_user)
     end
+  end
+
+
+  private
+
+
+  def user_data_to_json(users)
+    users_json = []
+    users.each do |user|
+      user_json = user.as_json
+      user_json["following_pets"] = user.following_pets.as_json
+      user_json["owned_pets"] = user.owned_pets.as_json
+      users_json << user_json
+    end
+    users_json
+  end
+
+  def user_photo_to_json(user)
+    photos_json = []
+    photos_json << user.public_photos.as_json
+    photos_json << user.photos.as_json if current_user.id == user.id
+    photos_json.flatten
   end
 end

@@ -3,18 +3,29 @@ class PostsharesController < ApplicationController
 
   def index
     uniqPosts = []
-    postshares = current_user.owned_pets.includes(:postshares => { :post => :author })
+
+    pet_postshares = Pet.where('owner_id = ?', current_user.id)
+                        .includes(:postshares => { :post => :author })
                         .map{ |pet| json_tag_model(pet.postshares, pet) }
                         .flatten
-    render :json => postshares
+    user_postshares = User.includes(:postshares => { :post => :author })
+                          .find_by_session_token(session[:session_token])
+                          .postshares
+
+    render :json => pet_postshares.concat(json_user_tag_model(user_postshares))
   end
 
   def publicshare
     uniqPosts = []
-    postshares = current_user.owned_pets.includes(:publicshares => { :post => :author })
+    pet_postshares = Pet.where('owner_id = ?', current_user.id)
+                        .includes(:publicshares => { :post => :author })
                         .map{ |pet| json_tag_model(pet.publicshares, pet) }
                         .flatten
-    render :json => postshares
+    user_postshares = User.includes(:publicshares => { :post => :author })
+                        .find_by_session_token(session[:session_token])
+                        .publicshares
+
+    render :json => pet_postshares.concat(json_user_tag_model(user_postshares))
   end
 
   def create
@@ -54,10 +65,22 @@ class PostsharesController < ApplicationController
     postshares.each do |postshare|
       postshare_json = postshare.as_json
       postshare_json["pet"] = pet.as_json
-      postshare_json["user"] = postshare.post.author.as_json
+      postshare_json["author"] = postshare.post.author.as_json
       postshare_json["post"] = postshare.post.as_json
       postshares_json << postshare_json
     end
     postshares_json
+  end
+
+  def json_user_tag_model(postshares)
+    postshares_json = []
+    postshares.each do |postshare|
+      postshare_json = postshare.as_json
+      postshare_json["user"] = current_user.as_json
+      postshare_json["author"] = postshare.post.author.as_json
+      postshare_json["post"] = postshare.post.as_json
+      postshares_json << postshare_json
+    end
+    postshares_json.flatten
   end
 end

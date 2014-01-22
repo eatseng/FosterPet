@@ -1,7 +1,6 @@
 FosterPet.Views.PetTestimonialView = Backbone.View.extend({
   initialize: function(options) {
     this.pet = options.pet;
-    this.testimonial_collection = options.testimonial_collection;
     this.petTestimonials = new FosterPet.Collections.PetWallTestimonials(this.id);
     this.listenTo(this.petTestimonials, "add remove", this.render);
   },

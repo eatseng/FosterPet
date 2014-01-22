@@ -8,6 +8,8 @@
 
       <a href="/#users/<%=user.id%>/owned_pets">Owned Pets: <%=user.get('owned_pets').length%></a>
 
+      <a href="/#users/<%=user.id%>/gallery">Photos: <%=total_photos%></a>
+
       <img src="<%=user.get('photo_url')%>", alt="<%=user.get('username')%>"
         height="400" width="640">
 

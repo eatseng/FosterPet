@@ -14,18 +14,22 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     "users/:id/owned_pets" : "ownedPets",
     "admin/pets" : "petsIndex",
     "admin/pets/new" : "newPet",
-    "postApprove" : "postApprove"
+    "postApprove" : "postApprove",
+    "pets/:id/gallery" : "petGallery",
+    "pets/:id/gallery/:photo_id" : "petGalleryShow",
+    "users/:id/gallery" : "userGallery",
+    "users/:id/gallery/:photo_id" : "userGalleryShow"
   },
 
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
-    this.$rootNav = options.$rootNav;
     this.pet_collection = options.pets;
     this.user_collection = options.users;
     this.post_collection = options.posts;
     this.feed_collection = options.feeds;
     this.approve_collection = options.approve;
-    this.public_collection = options.publicposts;
+    this.public_collection = options.publicPosts;
+    this.user_gallery_collection = options.userGallery;
   },
 
   newUser: function() {
@@ -181,13 +185,34 @@ FosterPet.Routers.Router = Backbone.Router.extend({
       approve_collection: this.approve_collection,
     });
     this._swapView(renderedContent);
-    // var that = this;
-  //   this.post_collection.fetch({
-  //     var renderedContent = new FosterPet.Views.PostsApproveView({
-  //       collection: that.post_collection
-  //     });
-  //     that._swapView(renderedContent);
-  //   });
+  },
+
+  petGallery: function(id) {
+    var that = this;
+    var petGallery = new FosterPet.Collections.PetGalleryPhotos(id);
+    petGallery.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.GalleryView({
+          collection: petGallery,
+          id: id
+        });
+        that._swapView(renderedContent);
+      }
+    });
+  },
+
+  userGallery: function(id) {
+    var that = this;
+    var userGallery = new FosterPet.Collections.UserGalleryPhotos(id);
+    userGallery.fetch({
+      success: function() {
+        var renderedContent = new FosterPet.Views.GalleryView({
+          collection: userGallery,
+          id: id
+        });
+        that._swapView(renderedContent);
+      }
+    });
   },
 
   _swapView: function(view) {

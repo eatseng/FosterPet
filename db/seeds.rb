@@ -8,13 +8,13 @@
 
 Pet.create(name: "SnowBall", photo_url: "http://placekitten.com/400", likes: "tuna",
           dislikes: "dogs", age: "1 year", gender: "female", breed: "feline", size: "small",
-            about: "one cool cat")
+            about: "one cool cat", owner_id: "1")
 Pet.create(name: "Candy", photo_url: "http://placekitten.com/401", likes: "milk",
           dislikes: "steak", age: "2 months", gender: "female", breed: "feline", size: "small",
           about: "one sneaky cat")
 Pet.create(name: "Buddy", photo_url: "http://placekitten.com/402", likes: "fish",
           dislikes: "sweet things", age: "3 months", gender: "male", breed: "feline", size: "small",
-            about: "one hyper cat")
+            about: "one hyper cat" owner_id: "1")
 Pet.create(name: "BuzzBall", photo_url: "http://placekitten.com/404", likes: "candy",
           dislikes: "cold turkey", age: "7 months", gender: "male", breed: "feline", size: "small",
             about: "one hot cat")
