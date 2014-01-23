@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   def feeds
 
     uniqPosts = []
-    posts = current_user.following_pets.includes(:public_posts => :author)
+    posts = current_user.following_pets.includes(:public_posts => [:author, :photos])
                         .map{ |pet| json_tag_pet_model(pet.public_posts, pet, uniqPosts) }
                         .flatten
 
@@ -106,6 +106,7 @@ class PostsController < ApplicationController
         post_json = post.as_json
         post_json["pet"] = pet.as_json
         post_json["user"] = post.author.as_json
+        post_json["photos"] = post.photos.as_json
         posts_json << post_json
       end
     end

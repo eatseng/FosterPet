@@ -1,47 +1,58 @@
-<h1>FEED</h1>
+<div class="feed_title">
+  <h1>Pet Feed :</h1>
+</div>
 
-<div class="feed_container">
   <% feeds.each(function(feed) { %>
-    <div class="ind_feed">
+    <div class="post_container">
 
-      <div class="feed_post_pet">
+      <div class="post_receiver">
         <a href="#pets/<%=feed.get('pet').first().get('id')%>">
-          <img src="<%=feed.get('pet').first().get('photo_url')%>"
-                alt="pet picture" height=30px width=30px>
+          <img class="post_receiver_photo"
+                src="<%=feed.get('pet').first().get('photo_url')%>"
+                alt="pet picture" height=40px width=40px>
         </a>
         <a href="#pets/<%=feed.get('pet').first().get('id')%>">
           <%=feed.get('pet').first().get('name')%>
         </a>
-           received a post from >
+        <span>received a post from:</span>
       </div>
 
-      <div class="feed_post_user">
+      <div class="post_author">
         <a href="#users/<%=feed.get('user').first().get('id')%>">
-          <img src="<%=feed.get('user').first().get('photo_url')%>"
-              alt="user picture" height=30px width=30px>
+          <img class="post_author_photo"
+              src="<%=feed.get('user').first().get('photo_url')%>"
+              alt="user picture" height=40px width=40px>
         </a>
         <a href="#users/<%=feed.get('user').first().get('id')%>">
           <%=feed.get('user').first().get('username')%>
         </a>
       </div>
 
-      <div class="feed_time">
+      <div class="post_time">
+        <span>on </span>
         <%=moment(feed.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
       </div>
 
-      <div class="feed_post_data">
+      <div class="post_data">
         <% if(feed.get('body')) { %>
-          <div class="feed_post_body">
-            <%=feed.get('user').first().get('username')%> says: "<%=feed.get('body')%>"
+          <div class="post_body">
+            <span class="post_body_span">
+              <%=feed.get('user').first().get('username')%> says:
+            </span>
+            "<%=feed.get('body')%>"
           </div>
         <% } %>
-        <% if(feed.get('photo_url')) { %>
-          <div class="feed_post_photo">
-            <img src="<%=feed.get('photo_url')%>" alt="feed picture" height=300px width=480px>
-          </div>
+
+        <% if(feed.get('photos')) { %>
+          <% feed.get('photos').each(function(photo) { %>
+            <div class="post_photo_div">
+              <img class="post_photo"
+                  src="<%=photo.get('photo_url')%>"
+                  alt="<%=photo.get('description')%>" height=50px width=80px>
+            </div>
+          <% });%>
         <% } %>
       </div>
 
     </div>
   <% }); %>
-</div>

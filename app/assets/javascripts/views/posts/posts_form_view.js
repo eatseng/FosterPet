@@ -16,14 +16,18 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
 
   render: function() {
     // this.$el.html(this.formStructure());
-
-    var renderedContent = this.template({
-      pets: this.pet_collection,
-      users: this.user_collection
+    var that = this;
+    this.pet_collection.fetch({
+      remove: false,
+      data: {page: that.pet_collection.total_pages},
+      success: function(){
+        var renderedContent = that.template({
+          pets: that.pet_collection,
+          users: that.user_collection
+        });
+        that.$el.html(renderedContent);
+      }
     });
-
-    this.$el.html(renderedContent);
-
     //this.$('.form').html(renderedContent);
     //this.$('.photo').html(this.photoTemplate());
 

@@ -1,29 +1,31 @@
 <div class="row">
   <% pets.forEach(function(pet){ %>
-    <div class="col-xs-4">
-      <div class="col-xs-offset-1">
-
+    <div class="pet_home_pet_box">
+      <div class="pet_home_data">
         <a href="/#pets/<%=pet.id%>"><%=pet.get('name')%></a>
-
+        <br  />
+      </div>
+      <div class="pet_home_photo_div">
         <a href="#pets/<%=pet.id%>">
-          <img src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>"
-          height="100" width="100"
-          >
+          <img class="pet_home_photo" src="<%=pet.get('photo_url')%>"
+            alt="<%=pet.get('name')%>" height="100" width="100">
         </a>
+      </div>
 
+      <div class="pet_home_follow_button">
          <% if (pet.get('following')) { %>
            <span class="following can_follow">
          <% } else { %>
            <span class="following can_unfollow">
          <% } %>
-        <button class="follow" pet_id="<%=pet.get('id')%>">Follow Pet</button>
-        <button class="unfollow" <% if (pet.get('following')) { %>
+        <button class="btn btn-follow" pet_id="<%=pet.get('id')%>">Follow</button>
+        <button class="btn btn-unfollow" <% if (pet.get('following')) { %>
             id="<%=pet.get('following').get('id')%>"
             <% } %>
-            pet_id="<%=pet.get('id')%>">unFollow Pet</button>
+            pet_id="<%=pet.get('id')%>">Unfollow</button>
           </span>
-
       </div>
+
     </div>
   <% }); %>
 </div>

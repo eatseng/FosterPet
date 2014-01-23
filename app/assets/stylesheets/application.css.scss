@@ -28,7 +28,11 @@ body {
 
 .navbar-default {
   background-color: #2d78a0;
+  border : 3px solid white;
   color: #fefcf8;
+  padding-left : 20px;
+  padding-right : 20px;
+
 //  border-color: blue;
 }
 
@@ -37,7 +41,7 @@ body {
 }
 
 .navbar-default .navbar-brand {
- color: white; 
+ color: white;
 }
 
 .content {
@@ -53,24 +57,236 @@ h1 {
   color: inherit;
 }
 
-
-div {
- 
-}
-
-
-
 .home {
   width:200;
   height:230px;
 }
 
+/***************************PET FEED *************************/
+
+.feed_title {
+  margin-bottom: 20px;
+}
+
+.feed_title > h1 {
+  font-weight:900;
+  color : #0588a8;
+}
+
+/**************************PET POST ***************************/
+
+.post_container {
+  border : 3px solid #2D78A0;
+  padding : 15px;
+  border-radius : 20px;
+  margin : 20px;
+  overflow: auto;
+}
+
+.post_receiver {
+  font-weight: 500;
+  font-size:18px;
+  margin-bottom : 4px;
+}
+
+.post_receiver > span {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom : 4px;
+
+}
+
+.post_author {
+  font-weight: 500;
+  font-size:18px;
+  margin-bottom : 4px;
+}
+
+.post_time {
+  font-size : 14px;
+  font-weight: 400;
+  margin-bottom : 5px;
+}
+
+.post_data {
+  border : 2px solid #f2700c;
+  border-radius : 10px;
+  overflow: auto;
+  padding: 5px;
+}
+
+.post_photo {
+  border : 2px solid black;
+  margin-top : 3px;
+  margin-right : 3px;
+  margin-bottom : 3px;
+  border-radius : 6px;
+  float:left;
+}
+
+.post_body {
+  font-weight: 400;
+  font-size:15px;
+  color: #fa4b0a;
+}
+
+.post_body > span {
+  font-weight: 600;
+  font-size:15px;
+  color: #ff2468;
+}
+
+
+/***************************PET HOME **************************/
+
+.pet_home_pet_box {
+  float: left;
+  width : 110px;
+  margin : 10px;
+  text-align: center;
+}
+
+.pet_home_photo {
+  border : 5px solid #2D78A0;
+  border-radius : 20px;
+}
+
+.pet_home_follow_button {
+  margin: 5px;
+}
+
+.pet_home_data {
+  font-weight:900;
+}
+
+.btn-follow {
+  border : 2px solid black;
+  font-family : Helvetica;
+  background-color: #ff8c06;
+  font-size : 14px;
+  font-weight:900;
+  text-align: center;
+  width : 95px;
+}
+
+.btn-follow:hover {
+  background-color: #ff2468;
+}
+
+.btn-unfollow {
+  border : 2px solid black;
+  font-family : Helvetica;
+  background-color: #e0dad6;
+  font-size : 14px;
+  font-weight:900;
+  text-align: center;
+  width : 95px;
+}
+
+.btn-unfollow:hover {
+  background-color: white;
+}
+
+/***********************PET APPROVAL POST *****************/
+
+.tab-content {
+  height:400px;
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+
+.tab-pane {
+  border : 3px solid #fefcf8;
+}
+
+.public-btn {
+  margin-top: 4px;
+}
+
+button.public {
+  font-family : Helvetica;
+  background-color: #ff8c06;
+  font-size : 12px;
+  font-weight:900;
+  text-align: center;
+  width : 95px;
+}
+
+button.public:hover {
+  background-color: #ff2468;
+}
+
+.private-btn {
+  margin-top: 5px;
+}
+
+button.private {
+  font-family : Helvetica;
+  background-color: #e0dad6;
+  font-size : 12px;
+  font-weight:900;
+  text-align: center;
+  width : 95px;
+}
+
+button.private:hover {
+  background-color: white;
+}
+
+
+
+/************************PET WALL **********************/
+.pet_wall#pet_wall {
+  margin : 10px;
+  width : 600px;
+  border : 2px solid #fefcf8;
+  padding : 10px;
+}
+
+
+/**********************PET TESTIMONIAL****************/
+
+.testimonial_title {
+  margin-bottom: 20px;
+}
+
+.testimonial_title > h1 {
+  font-weight:900;
+  color : #0588a8;
+}
+
+/*********************USER WALL***********************/
+.user_wall#user_wall {
+  margin : 10px;
+  width : 600px;
+  border : 2px solid #fefcf8;
+  padding : 10px;
+}
+
+/********************PET SHOW************************/
+
+.pet_home_photo {
+  border : 5px solid #2D78A0;
+  border-radius : 20px;
+}
+
+
+/*
+.btn-danger:hover {
+  border-color: #[insert color here];
+  background-color: #[insert color here];
+}
 /*
 form {
   border : 1px solid #000;
   padding : 5px;
 }
 */
+
+
+
+
+
 
 .pet_show_view {
   width : 600px;
@@ -79,12 +295,12 @@ form {
 
 .pet_testimonial#pet_testimonial {
   border : 1px solid #000;
-  padding : 5px; 
+  padding : 5px;
 }
 
 .pet_testimoinal_form#pet_testimonial {
   border : 1px solid #000;
-  padding : 5px; 
+  padding : 5px;
 }
 
 
