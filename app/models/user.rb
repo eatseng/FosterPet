@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, :use => :slugged
 
-  attr_accessible :username, :password
+  attr_accessible :username, :password, :account_type, :email, :photo_url
   attr_reader :password
 
   has_many :followings, :dependent => :destroy

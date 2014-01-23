@@ -15,7 +15,97 @@
 
 @import "bootstrap";
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #fefcf8;
+  text-align: center;
+  background: #c4dd47;
+  //background: url('radial-gradient.png') 50% 50% no-repeat;
+  //background: radial-gradient(#a1e048, #6a942f);
+ }
+
+.navbar-default {
+  background-color: #2d78a0;
+  color: #fefcf8;
+//  border-color: blue;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-brand {
+ color: white; 
+}
+
+.content {
+    text-align: left;
+    width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+  font-family: serif;
+  font-weight: 2000;
+  line-height: 1.1;
+  color: inherit;
+}
+
+
+div {
+ 
+}
+
+
+
 .home {
   width:200;
   height:230px;
 }
+
+/*
+form {
+  border : 1px solid #000;
+  padding : 5px;
+}
+*/
+
+.pet_show_view {
+  width : 600px;
+
+}
+
+.pet_testimonial#pet_testimonial {
+  border : 1px solid #000;
+  padding : 5px; 
+}
+
+.pet_testimoinal_form#pet_testimonial {
+  border : 1px solid #000;
+  padding : 5px; 
+}
+
+
+
+.modal-content {
+  background: #0f324b;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: inherit;
+font-weight: 500;
+line-height: 1.1;
+color: black;
+}
+
+
+
+
+
+
+
+
+
+

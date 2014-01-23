@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create(:username => "Edward", :password => "password")
+User.create(:username => "admin", :password => "password", :account_type => "admin")
+User.create(:username => "Ned", :password => "password")
+User.create(:username => "Flarnie", :password => "password")
+User.create(:username => "CJ", :password => "password")
+User.create(:username => "Jeff", :password => "password")
+User.create(:username => "Ryan", :password => "password")
+
 Pet.create(name: "SnowBall", photo_url: "http://placekitten.com/400", likes: "tuna",
           dislikes: "dogs", age: "1 year", gender: "female", breed: "feline", size: "small",
             about: "one cool cat", owner_id: "1")

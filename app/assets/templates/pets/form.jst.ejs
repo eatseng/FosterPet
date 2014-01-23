@@ -51,8 +51,12 @@
           </textarea>
         </div>
 
+        <%if (pet.get('name')) { %>
+          <input type="submit" value="Edit Pet" class="btn btn-primary">
+        <% } else { %>
+          <input type="submit" value="Add Pet" class="btn btn-primary">
+        <% } %>
 
-        <input type="submit" value="Add Pet" class="btn btn-primary">
       </form>
     </div>
   </div>
