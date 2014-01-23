@@ -18,21 +18,29 @@
               <%=post.get('author').first().get('username')%>
             </a>
           </div>
+
           <div class="post_time">
             <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
           </div>
+
           <div class="wall_post_data">
             <% if(post.get('body')) { %>
               <div class="wall_post_body">
                 <%=post.get('body')%>
               </div>
             <% } %>
-            <% if(post.get('photo_url')) { %>
-              <div class="wall_post_photo">
-                <img src="<%=post.get('photo_url')%>" alt="post picture" height=300px width=480px>
-              </div>
+
+            <% if(post.get('photos')) { %>
+              <% post.get('photos').each(function(photo) { %>
+                <div class="wall_post_photo">
+                  <img src="<%=photo.get('photo_url')%>"
+                      alt="<%=photo.get('description')%>" height=50px width=80px>
+                </div>
+              <% });%>
             <% } %>
           </div>
+
+
         </div>
       <% }); %>
     </div>

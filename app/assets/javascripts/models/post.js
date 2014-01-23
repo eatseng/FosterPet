@@ -9,6 +9,9 @@ FosterPet.Models.Post = Backbone.Model.extend({
     if (data.pet) {
       data.pet = new FosterPet.Collections.Pets(data.pet);
     }
+    if (data.photos) {
+      data.photos = new FosterPet.Collections.PetGalleryPhotos(data.photos);
+    }
     return data;
   },
 
@@ -28,6 +31,7 @@ FosterPet.Models.Post = Backbone.Model.extend({
     data.unset('author');
     data.unset('user');
     data.unset('pet');
+    data.unset('photos');
     return data;
   }
 })

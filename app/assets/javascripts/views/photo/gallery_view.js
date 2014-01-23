@@ -15,6 +15,6 @@ FosterPet.Views.GalleryView = Backbone.View.extend({
   },
 
   back: function() {
-    Backbone.history.navigate("", { trigger: true });
+    window.history.back();
   }
 });

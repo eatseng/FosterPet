@@ -14,7 +14,7 @@ Pet.create(name: "Candy", photo_url: "http://placekitten.com/401", likes: "milk"
           about: "one sneaky cat")
 Pet.create(name: "Buddy", photo_url: "http://placekitten.com/402", likes: "fish",
           dislikes: "sweet things", age: "3 months", gender: "male", breed: "feline", size: "small",
-            about: "one hyper cat" owner_id: "1")
+            about: "one hyper cat", owner_id: "1")
 Pet.create(name: "BuzzBall", photo_url: "http://placekitten.com/404", likes: "candy",
           dislikes: "cold turkey", age: "7 months", gender: "male", breed: "feline", size: "small",
             about: "one hot cat")
@@ -25,3 +25,10 @@ Pet.create(name: "Mavrick", photo_url: "http://placekitten.com/407", likes: "fly
           dislikes: "migs", age: "16 months", gender: "male", breed: "feline", size: "small",
           about: "one rebel cat")
 
+200.times {|i|
+  name = Faker::Name.first_name
+  photo = 407 + i*1
+  Pet.create(name: name, photo_url: "http://placekitten.com/" + photo.to_s, likes: "flying",
+            dislikes: "migs", age: "16 months", gender: "male", breed: "feline", size: "small",
+            about: "one rebel cat")
+}

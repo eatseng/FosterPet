@@ -5,10 +5,10 @@ class PostsharesController < ApplicationController
     uniqPosts = []
 
     pet_postshares = Pet.where('owner_id = ?', current_user.id)
-                        .includes(:postshares => { :post => :author })
+                        .includes(:postshares => { :post => [:author, :photos] })
                         .map{ |pet| json_tag_model(pet.postshares, pet) }
                         .flatten
-    user_postshares = User.includes(:postshares => { :post => :author })
+    user_postshares = User.includes(:postshares => { :post => [:author, :photos] })
                           .find_by_session_token(session[:session_token])
                           .postshares
 
@@ -18,10 +18,10 @@ class PostsharesController < ApplicationController
   def publicshare
     uniqPosts = []
     pet_postshares = Pet.where('owner_id = ?', current_user.id)
-                        .includes(:publicshares => { :post => :author })
+                        .includes(:publicshares => { :post => [:author, :photos] })
                         .map{ |pet| json_tag_model(pet.publicshares, pet) }
                         .flatten
-    user_postshares = User.includes(:publicshares => { :post => :author })
+    user_postshares = User.includes(:publicshares => { :post => [:author, :photos] })
                         .find_by_session_token(session[:session_token])
                         .publicshares
 
@@ -67,6 +67,7 @@ class PostsharesController < ApplicationController
       postshare_json["pet"] = pet.as_json
       postshare_json["author"] = postshare.post.author.as_json
       postshare_json["post"] = postshare.post.as_json
+      postshare_json['photos'] = postshare.post.photos.as_json
       postshares_json << postshare_json
     end
     postshares_json
@@ -79,6 +80,7 @@ class PostsharesController < ApplicationController
       postshare_json["user"] = current_user.as_json
       postshare_json["author"] = postshare.post.author.as_json
       postshare_json["post"] = postshare.post.as_json
+      postshare_json['photos'] = postshare.post.photos.as_json
       postshares_json << postshare_json
     end
     postshares_json.flatten

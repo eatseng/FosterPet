@@ -1,10 +1,12 @@
 FosterPet.Views.PetsHomeView = Backbone.View.extend({
   events: {
     "click button.follow" : "follow",
-    "click button.unfollow" : "unfollow"
+    "click button.unfollow" : "unfollow",
   },
 
   initialize: function() {
+    $(window).scroll(this.listenToScroll.bind(this));
+    this.listenTo(this.collection, "add remove", this.render);
   },
 
   template: JST['pets/home'],
@@ -33,6 +35,39 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
     var following = this._setupObject(event);
     following.destroy();
     this._toggleStatus(event);
+  },
+
+  listenToScroll: function() {
+    if (this.isAtBottom()) {
+      if (!this.throttledCallback) {
+        this.throttledCallback = _.throttle(this.nextPage.bind(this), 200);
+      }
+      this.throttledCallback();
+    }
+  },
+
+  isAtBottom: function () {
+    var currentPos = $(document).scrollTop();
+    var windowHeight = $(window).height();
+    var totalHeight = $(document).height();
+    var buffer = 100;
+    return ((currentPos + buffer) > (totalHeight - windowHeight))
+  },
+
+  nextPage: function() {
+    var that = this;
+    if (that.collection.page < that.collection.total_pages) {
+      that.collection.fetch({
+        data: {page: that.collection.page + 1},
+        remove: false
+      });
+    }
+
+    // model.save({}, {
+//       error: function (model, response) {
+//
+//       }
+//     })
   },
 
   _toggleStatus: function(event) {

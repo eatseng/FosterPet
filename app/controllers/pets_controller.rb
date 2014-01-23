@@ -4,7 +4,12 @@ class PetsController < ApplicationController
 
   def index
     @pets = Pet.includes(:followings, :followers, :owners)
-    render :json => pet_to_json(@pets)
+                .page(params[:page])
+    render :json => {
+                    :models => pet_to_json(@pets),
+                    :page => params[:page],
+                    :total_pages => @pets.total_pages
+                  }
   end
 
   def gallery
@@ -38,15 +43,13 @@ class PetsController < ApplicationController
 
 
   private
-  
+
 
   def pet_to_json(pets)
     pets_json = []
     pets.each do |pet|
       following = pet.followings.find { |f| f.user_id == current_user.id }
       pet_json = pet.as_json
-      # pet_json["public_photos"] = pet.public_photos.as_json
-      # pet_json["private_photos"] = pet.photos.as_json if current_user.id == pet.owner_id
       pet_json["following"] = following.as_json
       pet_json["followers"] = pet.followers.flatten.as_json
       pet_json["owners"] = pet.owners.flatten.as_json
@@ -59,8 +62,6 @@ class PetsController < ApplicationController
     photos_json = []
     photos_json << pet.public_photos.as_json
     photos_json << pet.photos.as_json if current_user.id == pet.owner_id
-    p "DSKLFJLDSKJF"
-    p photos_json.flatten
     photos_json.flatten
   end
 end

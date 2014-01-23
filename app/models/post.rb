@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :photo_url, :user_id
+  attr_accessible :body, :user_id, :photos
 
   has_many :postshares, :dependent => :destroy
   has_many :publicshares, :dependent => :destroy
@@ -15,8 +15,14 @@ class Post < ActiveRecord::Base
   validates :user_id, :presence => true
   validate :photo_or_body
 
+  # def body_check
+  #   if body.blank?
+  #     errors[:base] << ("Body Cannot Be Blank!")
+  #   end
+  # end
+
   def photo_or_body
-    if photo_url.blank? && body.blank?
+    if photos.empty? && body.blank?
       errors[:base] << ("Please fill in post body or photo url")
     end
   end

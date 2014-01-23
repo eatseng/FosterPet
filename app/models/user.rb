@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  #extend FriendlyId
-  #friendly_id :name, use: slugged (need new migration to create column)
+  extend FriendlyId
+  friendly_id :username, :use => :slugged
 
   attr_accessible :username, :password
   attr_reader :password

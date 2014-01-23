@@ -11,8 +11,10 @@ class CreatePets < ActiveRecord::Migration
       t.string :size
       t.string :about
       t.integer :owner_id
+      t.string :slug
 
       t.timestamps
     end
+    add_index :pets, :slug, :unique => true
   end
 end

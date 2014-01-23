@@ -7,6 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'sqlite3'
 
+gem 'faker'
 gem 'figaro'
 gem 'friendly_id'
 gem 'kaminari'

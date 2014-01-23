@@ -7,17 +7,20 @@ class PostsController < ApplicationController
 
  def create
     params['post']['user_id'] = current_user.id
-
     post = Post.new(params[:post])
+    if params[:photo]
+      params[:photo].each { |photo| post.photos.new(photo) unless photo['photo_url'].blank?}
+    end
+    p post.photos
     if post.save
       begin
         ActiveRecord::Base.transaction do
-          unless params[:photo].all? {|param| param['photo_url'] == ""}
-            params[:photo].map do |param|
-              post.photos.new(param)
-              post.save
-            end
-          end
+          # unless params[:photo].all? {|param| param['photo_url'] == ""}
+#             params[:photo].map do |param|
+#               post.photos.new(param)
+#               post.save
+#             end
+#           end
 
           find_postable.map do |base|
             post.postshares.new({
@@ -34,7 +37,7 @@ class PostsController < ApplicationController
         post.destroy
       end
     else
-      render :json => {errors: "ERRORS"}, status: :unprocessable_entity
+      render :json => {errors: post.errors.full_messages}, status: :unprocessable_entity
     end
 
   end
@@ -69,14 +72,14 @@ class PostsController < ApplicationController
   end
 
   def petwall
-    @posts = Pet.find(params[:pet_id]).public_posts.includes(:author)
+    @posts = Pet.find(params[:pet_id]).public_posts.includes(:author, :photos)
     render :json => json_tag_user_model(@posts)
   end
 
   def userwall
     @posts_json = json_tag_user_model(User.find(params[:user_id]).public_posts.includes(:author))
     @posts_json.concat(json_tag_recipients(Post.where('user_id = ?', params[:user_id])
-                                                .includes(:publicshares => :publicable) ))
+                                                .includes(:photos, :publicshares => :publicable) ))
     render :json => @posts_json
   end
 
@@ -89,6 +92,7 @@ class PostsController < ApplicationController
     posts.each do |post|
       post_json = post.as_json
       post_json["author"] = post.author.as_json
+      post_json["photos"] = post.photos.as_json
       posts_json << post_json
     end
     posts_json
@@ -114,6 +118,7 @@ class PostsController < ApplicationController
       post_json = post.as_json
       post_json["pet"] = []
       post_json["user"] = []
+      post_json["photos"] = post.photos.as_json
       recipients = post.publicshares.each do |publicshare|
         if publicshare.publicable_type == "Pet"
           post_json["pet"] << publicshare.publicable

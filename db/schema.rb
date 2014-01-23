@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121180949) do
+ActiveRecord::Schema.define(:version => 20140123000054) do
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(:version => 20140121180949) do
   end
 
   add_index "followings", ["pet_id", "user_id"], :name => "index_followings_on_pet_id_and_user_id", :unique => true
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "ownerships", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -42,9 +53,12 @@ ActiveRecord::Schema.define(:version => 20140121180949) do
     t.string   "size"
     t.string   "about"
     t.integer  "owner_id"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "pets", ["slug"], :name => "index_pets_on_slug", :unique => true
 
   create_table "photos", :force => true do |t|
     t.integer  "user_id",     :null => false
@@ -56,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20140121180949) do
 
   create_table "posts", :force => true do |t|
     t.string   "body"
-    t.string   "photo_url"
     t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -98,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20140121180949) do
 
   create_table "userdescriptions", :force => true do |t|
     t.integer  "user_id",    :null => false
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "profession"
     t.string   "age"
     t.string   "about"
@@ -107,15 +122,18 @@ ActiveRecord::Schema.define(:version => 20140121180949) do
 
   create_table "users", :force => true do |t|
     t.string   "username",                            :null => false
+    t.string   "email"
     t.string   "password_digest",                     :null => false
     t.string   "session_token",                       :null => false
     t.string   "account_type",    :default => "user"
     t.string   "photo_url"
+    t.string   "slug"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end
 
   add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

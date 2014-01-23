@@ -11,12 +11,6 @@ FosterPet.Models.Pet = Backbone.Model.extend({
     if (data.owners) {
       data.owners = new FosterPet.Collections.Users(data.owners);
     }
-    if (data.public_photos) {
-      data.public_photos = new FosterPet.Collections.Users(data.public_photos);
-    }
-    if (data.private_photos) {
-      data.private_photos = new FosterPet.Collections.Users(data.private_photos);
-    }
     return data;
   },
 
@@ -25,8 +19,6 @@ FosterPet.Models.Pet = Backbone.Model.extend({
     data.unset('following');
     data.unset('followers');
     data.unset('owners');
-    data.unset('public_photos')
-    data.unset('private_photos')
     return data;
   }
 });

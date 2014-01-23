@@ -1,4 +1,7 @@
 class Pet < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+
   attr_accessible :about, :age, :dislikes, :gender, :likes, :breed, :name, :photo_url, :size, :owner_id
 
   has_many :followings, :dependent => :destroy

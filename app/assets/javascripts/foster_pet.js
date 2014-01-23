@@ -14,6 +14,8 @@ window.FosterPet = {
     var $rootEl = $('.content');
 
     pets.fetch({
+      remove: false,
+      data: { page: 0 },
       success: function() {
         new FosterPet.Routers.Router({
           $rootEl: $rootEl,
@@ -23,7 +25,7 @@ window.FosterPet = {
           feeds: feeds,
           approve: approve,
           publicPosts: publicPosts,
-          userGallery: userGallery   
+          userGallery: userGallery
         });
         Backbone.history.start();
       }

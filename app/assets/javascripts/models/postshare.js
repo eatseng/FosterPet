@@ -12,6 +12,9 @@ FosterPet.Models.Postshare = Backbone.Model.extend({
     if (data.post) {
       data.post = new FosterPet.Collections.Posts(data.post);
     }
+    if (data.photos) {
+      data.photos = new FosterPet.Collections.PetGalleryPhotos(data.photos);
+    }
     return data;
   },
 

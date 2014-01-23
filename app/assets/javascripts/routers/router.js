@@ -67,6 +67,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   show: function(id) {
     var that = this;
+    //if id isn't a number
+    //this.pet_collection.findWhere({name: id}) something like that
     this.pet_collection.fetch({
       success: function() {
         var renderedContent = new FosterPet.Views.PetsShowView({
@@ -82,8 +84,11 @@ FosterPet.Routers.Router = Backbone.Router.extend({
 
   newPost: function() {
     var that = this;
-
-    $.when(this.user_collection.fetch(), this.post_collection.fetch()).then(function() {
+    $.when(this.user_collection.fetch({remove: false,
+                                      data: { page: 0 },}),
+          this.post_collection.fetch({remove: false,
+                                      data: { page: 0 },})
+          ).then(function() {
         var renderedContent = new FosterPet.Views.PostsFormView({
           pet_collection: that.pet_collection,
           user_collection: that.user_collection,

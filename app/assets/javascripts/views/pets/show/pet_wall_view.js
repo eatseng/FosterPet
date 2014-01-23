@@ -6,11 +6,13 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
   },
 
   events: {
-    "click .btn-post" : "submitPost"
+    "click .btn-post" : "submitPost",
+    "click .btn-add-photo": "addPhoto"
   },
-  
+
   template: JST['pets/petwall'],
   templateWallPostForm: JST['pets/postform'],
+  photoTemplate: JST['photo/form'],
 
   render: function() {
     var that = this;
@@ -24,9 +26,9 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
         that.$('.pet_wall#pet_post').html(that.templateWallPostForm({pet: that.pet}));
       }
     });
-    
-    return this;    
-  }, 
+
+    return this;
+  },
 
   submitPost: function(event) {
     event.preventDefault();
@@ -37,5 +39,10 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
         //Backbone.history.navigate("", {trigger:true});
       }
     });
+  },
+
+  addPhoto: function(event) {
+    event.preventDefault();
+    $('.photo_container').append(this.photoTemplate());
   }
 });
