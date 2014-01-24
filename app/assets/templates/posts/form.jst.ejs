@@ -57,11 +57,13 @@
 
               <div class="tab-pane" id="select_users">
                 <%users.forEach(function(user) { %>
+                  <% if (user.get('id') != CURRENT_USER_ID) { %>
                   <input type="checkbox" name="postshare[user_id][]" value="<%=user.get('id')%>" id="<%=user.get('username')%>">
                   <img src="<%=user.get('photo_url')%>"
                         alt="user picture" height=30px width=30px>
                   <label for="<%=user.get('username')%>"><%=user.get('username')%></label>
                   <br  />
+                  <% } %>
                 <% }); %>
               </div>
             </div>

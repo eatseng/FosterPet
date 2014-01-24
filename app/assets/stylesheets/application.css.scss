@@ -26,6 +26,10 @@ body {
   //background: radial-gradient(#a1e048, #6a942f);
  }
 
+.modal-content {
+  background: blue;
+}
+
 .navbar-default {
   background-color: #2d78a0;
   border : 3px solid white;
@@ -52,6 +56,11 @@ body {
   color: #eca02f;
 }
 
+.navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+background-color: #2d78a0;
+color: white;
+}
+
 .content {
     text-align: left;
     width: 800px;
@@ -75,6 +84,8 @@ text-decoration: none;
   height:230px;
 }
 
+
+
 /***************************PET FEED *************************/
 
 .feed {
@@ -96,22 +107,32 @@ text-decoration: none;
 /**************************PET POST ***************************/
 
 .post_container {
-  border : 3px solid #2D78A0;
+  //border : 3px solid #2D78A0;
+  background-color: #2d78a0;
+  border : 3px solid white;
+  color: #fefcf8;
   padding : 15px;
   border-radius : 20px;
   margin : 20px;
   overflow: auto;
 }
 
+
+  
 .post_receiver {
   text-align: left;
-  font-weight: 500;
-  font-size:18px;
+  font-weight: 800;
+  font-size:20px;
   margin-bottom : 4px;
 }
 
+.post_receiver > a{
+  color : white;
+}
+
+
 .post_receiver > span {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 15px;
   margin-bottom : 4px;
   color : #DB8A58;
@@ -119,15 +140,19 @@ text-decoration: none;
 
 .post_author {
   text-align: left;
-  font-weight: 500;
-  font-size:18px;
+  font-weight: 800;
+  font-size:20px;
   margin-bottom : 4px;
+}
+
+.post_author > a{
+  color : white;
 }
 
 .post_time {
   text-align: left;
   font-size : 14px;
-  font-weight: 400;
+  font-weight: 700;
   margin-bottom : 5px;
   color : #CC7D4B;
 }
@@ -150,15 +175,16 @@ text-decoration: none;
 }
 
 .post_body {
-  font-weight: 400;
-  font-size:15px;
-  color: #326D8C;
+  font-weight: 900;
+  font-size:18px;
+  color: white;
+  //color: #326D8C;
 }
 
 .post_body > span {
-  font-weight: 600;
-  font-size:15px;
-  color: black;
+  font-weight: 900;
+  font-size:20px;
+  //color: white;
 }
 
 
@@ -177,6 +203,10 @@ text-decoration: none;
 }
 
 .pet_home_photo {
+    //max-width: 100%;
+    //height: auto;
+    //width: auto\9; /* ie8 */
+
   border : 5px solid #2D78A0;
   border-radius : 20px;
 }
@@ -283,15 +313,23 @@ button.private:hover {
 
 /************************PET WALL **********************/
 .pet_wall#pet_wall {
-  background-color : #e0dad6;
+  background-color : #eca02f;
   margin : 10px;
-  width : 600px;
-  border : 2px solid #fefcf8;
+  border : 3px solid #fefcf8;
+  border-radius : 10px;
   padding : 10px;
 }
 
 
 /**********************PET TESTIMONIAL****************/
+
+.testimonial_box {
+  background-color : #eca02f;
+  margin : 10px;
+  border : 3px solid #fefcf8;
+  border-radius : 10px;
+  padding : 10px;
+}
 
 .testimonial_title {
   margin-bottom: 20px;
@@ -304,27 +342,119 @@ button.private:hover {
 
 /*********************USER WALL***********************/
 .user_wall#user_wall {
+  background-color : #eca02f;
+  border-radius : 10px;
   margin : 10px;
   width : 600px;
-  border : 2px solid #fefcf8;
+  border : 3px solid #fefcf8;
   padding : 10px;
+}
+
+/*********************USER SHOW***********************/
+.user_show {
+  margin-left : 100px;
+  margin-right : 100px;
+  overlap : auto;
+  text-align : center;
+}
+
+.top_header {
+  margin-right : 30px;
+}
+
+.user_wall {
+  margin-left : 30px;
 }
 
 /********************PET SHOW************************/
 
+.profile_header {
+  background-color: #2d78a0;
+  border : 3px solid white;
+  color: #fefcf8;
+  padding : 15px;
+  border-radius : 20px;
+  margin : 20px;
+  overflow: auto;
+}
+
+.profile_name > h2 {
+  color: white;
+  font-weight: 600px;
+  text-align: left;
+}
+
+.profile_follower {
+  text-align: left;
+}
+
+.profile_follower > a{
+  color:white;
+}
+
+
+.profile_owner {
+  text-align: left;
+}
+
+.profile_owner > a{
+  color:white;
+}
+
+
+.profile_gallery {
+  text-align: left;
+}
+
+.profile_gallery > a {
+  color:white;
+}
+
 .pet_home_photo {
-  border : 5px solid #2D78A0;
+  border : 3px solid black;
   border-radius : 20px;
 }
 
-.content {
-
-
+.profile_about > h4 {
+  text-align :left;
+  color: white;
 }
 
-.pet_testimonial {
+.profile_about > p {
+  color: white;
+}
 
 
+
+/*************************PET GALLERY *********************/
+
+.gallery {
+  margin-left : 150px;
+  margin-right : 150px;
+}
+
+.photo_container {
+  float : left;
+  width : 110px;
+  margin : 10px;
+}
+
+.gallery_photo {
+  border : 2px solid #2D78A0;
+  border-radius : 20px;
+}
+
+.modal_photo {
+  border: 0 none;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.back_button {
+  position : relative;
+  bottom : 5px;
 }
 
 
@@ -350,21 +480,8 @@ form {
 
 }
 
-.pet_testimonial#pet_testimonial {
-  border : 1px solid #000;
-  padding : 5px;
-}
-
-.pet_testimoinal_form#pet_testimonial {
-  border : 1px solid #000;
-  padding : 5px;
-}
 
 
-
-.modal-content {
-  background: #0f324b;
-}
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 font-family: inherit;
@@ -373,7 +490,15 @@ line-height: 1.1;
 color: black;
 }
 
+.navbar-default .navbar-nav > li > a.guest {
+  color: #eca02f;
+  font-size: 20px;
+  font-weight :900;
+}
 
+.navbar-default .navbar-nav > li > a.guest:hover {
+  color: red;
+}
 
 
 

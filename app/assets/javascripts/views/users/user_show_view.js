@@ -19,7 +19,7 @@ FosterPet.Views.UserShowView = Backbone.View.extend({
           user: that.model,
           total_photos: total_photos
         }));
-
+      
         that.userWall = new FosterPet.Views.UserWallView({
           $el: that.$('.user_wall'),
           user: that.model,

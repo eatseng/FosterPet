@@ -127,7 +127,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   },
 
   followers: function(id) {
-    var renderedContent = new FosterPet.Views.PetFollowerView({
+    var renderedContent = new FosterPet.Views.PetOwnerFollowerView({
+      template: JST['pets/followers'],
       model: this.pet_collection.get(id)
     });
     this._swapView(renderedContent);
@@ -137,7 +138,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     var that = this;
     this.user_collection.fetch({
       success: function() {
-        var renderedContent = new FosterPet.Views.UserFollowingView({
+        var renderedContent = new FosterPet.Views.UserOwnerFollowingView({
+          template: JST['users/following_pets'],
           model: that.user_collection.get(id)
         });
         that._swapView(renderedContent);
@@ -149,7 +151,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     var that = this;
     this.pet_collection.fetch({
       success: function() {
-        var renderedContent = new FosterPet.Views.PetOwnerView({
+        var renderedContent = new FosterPet.Views.PetOwnerFollowerView({
+          template: JST['pets/ownership'],
           model: that.pet_collection.get(id)
         });
         that._swapView(renderedContent);
@@ -161,7 +164,8 @@ FosterPet.Routers.Router = Backbone.Router.extend({
     var that = this;
     this.user_collection.fetch({
       success: function() {
-        var renderedContent = new FosterPet.Views.UserOwnerView({
+        var renderedContent = new FosterPet.Views.UserOwnerFollowingView({
+          template: JST['users/ownership'],
           model: that.user_collection.get(id)
         });
         that._swapView(renderedContent);

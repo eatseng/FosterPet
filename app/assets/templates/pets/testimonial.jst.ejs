@@ -1,30 +1,32 @@
-<div class="col-xs-10">
-  <div class="col-xs-offset-1">
-    <div class="testimonial_title">
-      <h1>Pet Testimonial</h1>
-    </div>
+<div class="testimonial span8">
+  <div class="testimonial_title">
+    <h1>Pet Testimonial</h1>
+  </div>
 
+  <div class="testimonial_box">
     <div class="pet_testimoinal_form" id="pet_testimonial"></div>
-    <div class="pet_testimonial" id="pet_testimonial">
-      <% testimonials.forEach(function(testimonial) { %>
-        <div class="testimonial_body">
-          <div class="testimonial_user">
-            <img src="<%=testimonial.get('user').get('photo_url')%>"
-                alt="user picture" height=30px width=30px>
-            <%=testimonial.get('user').get('username')%>
-          </div>
-          <div class="post_time">
-            <%=moment(testimonial.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
-          </div>
-          <div class="testimonial_data">
-            <% if(testimonial.get('body')) { %>
-              <div class="testimonial_data_body">
-                <%=testimonial.get('body')%>
-              </div>
-            <% } %>
-          </div>
+  </div>
+
+  <div class="testimonial_box">
+    <% testimonials.forEach(function(testimonial) { %>
+      <div class="post_container">
+        <div class="post_author">
+          <img class="post_author_photo" 
+              src="<%=testimonial.get('user').get('photo_url')%>"
+              alt="user picture" height=30px width=30px>
+          <%=testimonial.get('user').get('username')%>
         </div>
-      <% }); %>
-    </div>
+        <div class="post_time">
+          <%=moment(testimonial.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+        </div>
+        <div class="post_data">
+          <% if(testimonial.get('body')) { %>
+            <div class="post_body">
+              <%=testimonial.get('body')%>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    <% }); %>
   </div>
 </div>

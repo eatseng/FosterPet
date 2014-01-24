@@ -15,20 +15,14 @@ class PostsController < ApplicationController
     if post.save
       begin
         ActiveRecord::Base.transaction do
-          # unless params[:photo].all? {|param| param['photo_url'] == ""}
-#             params[:photo].map do |param|
-#               post.photos.new(param)
-#               post.save
-#             end
-#           end
-
           find_postable.map do |base|
-            post.postshares.new({
-              :postable_type => base.class.name,
-              :postable_id => base.id,
-              #:post_id => (Post.last.id + 1)
-              })
-            post.save
+            unless base.class.name == "User" && base.id == current_user.id
+              post.postshares.new({
+                :postable_type => base.class.name,
+                :postable_id => base.id,
+                })
+              post.save
+            end
           end
         end
         render :json => {success: "post saved"}
@@ -39,26 +33,9 @@ class PostsController < ApplicationController
     else
       render :json => {errors: post.errors.full_messages}, status: :unprocessable_entity
     end
-
   end
 
-  # def create
-  #   params['post']['user_id'] = current_user.id
-  #   begin
-  #     ActiveRecord::Base.transaction do
-  #       find_postable.map do |base|
-  #         base.posts.build(params[:post])
-  #         base.save
-  #       end
-  #     end
-  #     render :json => {success: "post saved"}
-  #   rescue ActiveRecord::RecordInvalid => invalid
-  #     render :json => {errors: "errors saving post"}, status: :unprocessable_entity
-  #   end
-  # end
-
   def destroy
-
   end
 
   def feeds

@@ -8,6 +8,10 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
 
+    p "DSL:FKJDSLFKJ"
+    p params
+    p user
+
     if user.nil?
       render :json => "Credentials were wrong"
     else

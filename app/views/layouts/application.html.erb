@@ -25,6 +25,11 @@
 $(function(){
   $('#logout').on('click', function(){
   });
+  $('#guest').on('click', function(event) {
+    event.preventDefault();
+    <%="signIn = true"%>
+    $('#guestModal').modal();
+  });
   $('#signIn').on('click', function(event) {
     event.preventDefault();
     <%="signIn = true"%>

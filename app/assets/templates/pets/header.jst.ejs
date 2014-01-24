@@ -1,22 +1,26 @@
-<div class="col-xs-10">
-  <div class="col-xs-offset-1">
-    <div class="profile_pic">
+<div class="testimonial_title">
+    <h1 id="name"><%=pet.get('name')%></h2>
+</div>
 
-      <h2 id="name"><%=pet.get('name')%></h2>
+<div class="profile_header span8">
+  
+  <div class="profile_follower">
+    <a href="/#pets/<%=pet.id%>/followers">Followers: <%=pet.get('followers').length%></a>
+  </div>
+  <div class="profile_owner">
+    <a href="/#pets/<%=pet.id%>/owners">Foster Owners: <%=pet.get('owners').length%></a>
+  </div>
+  <div class="profile_gallery">
+    <a href="/#pets/<%=pet.id%>/gallery">Photos: <%=total_photos%></a>
+  </div>
+  <div class="profile_photo">
+    <img class="pet_home_photo"
+      src="<%=pet.get('photo_url')%>", alt="<%=pet.get('name')%>"
+      >
+  </div>
+  <div class="profile_about">
+    <h4 id="content_title">About This Pet :<h4>
+    <p id="content"><%=pet.get('about')%></p>
 
-      <a href="/#pets/<%=pet.id%>/followers">Followers: <%=pet.get('followers').length%></a>
-
-      <a href="/#pets/<%=pet.id%>/owners">Foster Owners: <%=pet.get('owners').length%></a>
-
-      <a href="/#pets/<%=pet.id%>/gallery">Photos: <%=total_photos%></a>
-
-      <img class="pet_home_photo"
-        src="<%=pet.get('photo_url')%>", alt="<%=pet.get('name')%>"
-        height="400" width="640">
-
-      <h4 id="content_title">About<h4>
-      <p id="content"><%=pet.get('about')%></p>
-
-    </div>
   </div>
 </div>
