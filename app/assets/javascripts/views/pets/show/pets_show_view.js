@@ -1,6 +1,7 @@
 FosterPet.Views.PetsShowView = Backbone.View.extend({
   initialize: function(options) {
     this.post_collection = options.post_collection;
+    // $('body').css('background-color', 'white')
   },
 
   events: {

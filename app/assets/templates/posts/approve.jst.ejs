@@ -1,141 +1,67 @@
-<div class="col-xs-10">
-  <div class="col-xs-offset-1">
+<div class="span8 approve">
+  <div class="approve_title">
     <h2>Approve Posts</h2>
-    <br />
+  </div>
 
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="#public" data-toggle="tab">Make Posts Public</a></li>
-      <li><a href="#private" data-toggle="tab">Make Posts Private</a></li>
-    </ul>
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#public" data-toggle="tab">Make Posts Public</a></li>
+    <li><a href="#private" data-toggle="tab">Make Posts Private</a></li>
+  </ul>
 
-    <div class="tab-content">
-      <div class="tab-pane active" id="public">
-        <% if (postshares.first()) {%>
-          <% postshares.each(function(postshare) { %>
-            <div class="post_container">
-
-              <div class="post_receiver">
-                <% if(postshare.get('pet')) { %>
-                  <a href="#pets/<%=postshare.get('pet').first().get('id')%>">
-                    <img src="<%=postshare.get('pet').first().get('photo_url')%>"
-                          alt="pet picture" height=30px width=30px>
-                  </a>
-
-                  <a href="#pets/<%=postshare.get('pet').first().get('id')%>">
-                    <%=postshare.get('pet').first().get('name')%>
-                  </a>
-                  <span>received a post from:</span>
-                <% } else {%>
-                  <a href="#users/<%=postshare.get('user').first().get('id')%>">
-                    <img src="<%=postshare.get('user').first().get('photo_url')%>"
-                        alt="user picture" height=30px width=30px>
-                  </a>
-                  <a href="#users/<%=postshare.get('user').first().get('id')%>">
-                    <%=postshare.get('user').first().get('username')%>
-                  </a>
-                  <span>received a post from:</span>
-                <% } %>
-              </div>
-
-              <div class="post_author">
-                <a href="#users/<%=postshare.get('author').first().get('id')%>">
-                  <img src="<%=postshare.get('author').first().get('photo_url')%>"
-                      alt="author picture" height=30px width=30px>
-                </a>
-                <a href="#users/<%=postshare.get('author').first().get('id')%>">
-                  <%=postshare.get('author').first().get('username')%>
-                </a>
-              </div>
-
-              <div class="post_time">
-                <%=moment(postshare.get('post').first().get('created_at'))
-                          .format("dddd, MMMM Do YYYY, h:mm:ss a")%>
-              </div>
-
-              <div class="post_data">
-                <% if(postshare.get('post').first().get('body')) { %>
-                  <div class="post_body">
-                    <%=postshare.get('author').first().get('username')%>
-                     says: "<%=postshare.get('post').first().get('body')%>"
-                  </div>
-                <% } %>
-
-                <% if(postshare.get('photos')) { %>
-                  <% postshare.get('photos').each(function(photo) { %>
-                    <div class="post_photo">
-                      <img src="<%=photo.get('photo_url')%>"
-                          alt="<%=photo.get('description')%>" height=50px width=80px>
-                    </div>
-                  <% });%>
-                <% } %>
-              </div>
-
-              <div class="public-btn">
-                <button class="public" ps_id="<%=postshare.id%>">Make Public</button>
-              </div>
-            </div>
-          <% }); %>
-        <% } else { %>
+  <div class="tab-content">
+    <div class="tab-pane active" id="public">
+      <% if (postshares.first()) {%>
+        <% postshares.each(function(postshare) { %>
           <div class="post_container">
-            <p>There are no posts!</p>
-          </div>
-        <% } %>
 
-      </div>
-
-
-      <div class="tab-pane" id="private">
-        <% publicshares.forEach(function(publicshare) { %>
-          <div class="post_container">
             <div class="post_receiver">
-              <% if(publicshare.get('pet')) { %>
+              <% if(postshare.get('pet')) { %>
+                <a href="#pets/<%=postshare.get('pet').first().get('id')%>">
+                  <img src="<%=postshare.get('pet').first().get('photo_url')%>"
+                        alt="pet picture" height=30px width=30px>
+                </a>
 
-                  <a href="#pets/<%=publicshare.get('pet').first().get('id')%>">
-                    <img src="<%=publicshare.get('pet').first().get('photo_url')%>"
-                          alt="pet picture" height=30px width=30px>
-                  </a>
-
-                  <a href="#pets/<%=publicshare.get('pet').first().get('id')%>">
-                    <%=publicshare.get('pet').first().get('name')%>
-                  </a>
-                  <span>received a post from:</span>
-              <% } else { %>
-                  <a href="#users/<%=publicshare.get('user').first().get('id')%>">
-                    <img src="<%=publicshare.get('user').first().get('photo_url')%>"
-                        alt="user picture" height=30px width=30px>
-                  </a>
-                  <a href="#users/<%=publicshare.get('user').first().get('id')%>">
-                    <%=publicshare.get('user').first().get('username')%>
-                  </a>
-                  <span>received a post from:</span>
+                <a href="#pets/<%=postshare.get('pet').first().get('id')%>">
+                  <%=postshare.get('pet').first().get('name')%>
+                </a>
+                <span>received a post from:</span>
+              <% } else {%>
+                <a href="#users/<%=postshare.get('user').first().get('id')%>">
+                  <img src="<%=postshare.get('user').first().get('photo_url')%>"
+                      alt="user picture" height=30px width=30px>
+                </a>
+                <a href="#users/<%=postshare.get('user').first().get('id')%>">
+                  <%=postshare.get('user').first().get('username')%>
+                </a>
+                <span>received a post from:</span>
               <% } %>
             </div>
 
             <div class="post_author">
-              <a href="#users/<%=publicshare.get('author').first().get('id')%>">
-                <img src="<%=publicshare.get('author').first().get('photo_url')%>"
+              <a href="#users/<%=postshare.get('author').first().get('id')%>">
+                <img src="<%=postshare.get('author').first().get('photo_url')%>"
                     alt="author picture" height=30px width=30px>
               </a>
-              <a href="#users/<%=publicshare.get('author').first().get('id')%>">
-                <%=publicshare.get('author').first().get('username')%>
+              <a href="#users/<%=postshare.get('author').first().get('id')%>">
+                <%=postshare.get('author').first().get('username')%>
               </a>
             </div>
 
             <div class="post_time">
-              <%=moment(publicshare.get('post').first().get('created_at'))
+              <%=moment(postshare.get('post').first().get('created_at'))
                         .format("dddd, MMMM Do YYYY, h:mm:ss a")%>
             </div>
 
             <div class="post_data">
-              <% if(publicshare.get('post').first().get('body')) { %>
+              <% if(postshare.get('post').first().get('body')) { %>
                 <div class="post_body">
-                  <%=publicshare.get('author').first().get('username')%>
-                   says: "<%=publicshare.get('post').first().get('body')%>"
+                  <%=postshare.get('author').first().get('username')%>
+                   says: "<%=postshare.get('post').first().get('body')%>"
                 </div>
               <% } %>
 
-              <% if(publicshare.get('photos')) { %>
-                <% publicshare.get('photos').each(function(photo) { %>
+              <% if(postshare.get('photos')) { %>
+                <% postshare.get('photos').each(function(photo) { %>
                   <div class="post_photo">
                     <img src="<%=photo.get('photo_url')%>"
                         alt="<%=photo.get('description')%>" height=50px width=80px>
@@ -144,15 +70,89 @@
               <% } %>
             </div>
 
-            <div class="private-btn">
-              <button class="private" ps_id="<%=publicshare.id%>">Make Private</button>
+            <div class="public-btn">
+              <button class="public" ps_id="<%=postshare.id%>">Make Public</button>
             </div>
           </div>
-
-
         <% }); %>
-      </div>
+      <% } else { %>
+        <div class="post_container">
+          <p>There are no posts!</p>
+        </div>
+      <% } %>
+
+    </div>
+
+
+    <div class="tab-pane" id="private">
+      <% publicshares.forEach(function(publicshare) { %>
+        <div class="post_container">
+          <div class="post_receiver">
+            <% if(publicshare.get('pet')) { %>
+
+                <a href="#pets/<%=publicshare.get('pet').first().get('id')%>">
+                  <img src="<%=publicshare.get('pet').first().get('photo_url')%>"
+                        alt="pet picture" height=30px width=30px>
+                </a>
+
+                <a href="#pets/<%=publicshare.get('pet').first().get('id')%>">
+                  <%=publicshare.get('pet').first().get('name')%>
+                </a>
+                <span>received a post from:</span>
+            <% } else { %>
+                <a href="#users/<%=publicshare.get('user').first().get('id')%>">
+                  <img src="<%=publicshare.get('user').first().get('photo_url')%>"
+                      alt="user picture" height=30px width=30px>
+                </a>
+                <a href="#users/<%=publicshare.get('user').first().get('id')%>">
+                  <%=publicshare.get('user').first().get('username')%>
+                </a>
+                <span>received a post from:</span>
+            <% } %>
+          </div>
+
+          <div class="post_author">
+            <a href="#users/<%=publicshare.get('author').first().get('id')%>">
+              <img src="<%=publicshare.get('author').first().get('photo_url')%>"
+                  alt="author picture" height=30px width=30px>
+            </a>
+            <a href="#users/<%=publicshare.get('author').first().get('id')%>">
+              <%=publicshare.get('author').first().get('username')%>
+            </a>
+          </div>
+
+          <div class="post_time">
+            <%=moment(publicshare.get('post').first().get('created_at'))
+                      .format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+          </div>
+
+          <div class="post_data">
+            <% if(publicshare.get('post').first().get('body')) { %>
+              <div class="post_body">
+                <%=publicshare.get('author').first().get('username')%>
+                 says: "<%=publicshare.get('post').first().get('body')%>"
+              </div>
+            <% } %>
+
+            <% if(publicshare.get('photos')) { %>
+              <% publicshare.get('photos').each(function(photo) { %>
+                <div class="post_photo">
+                  <img src="<%=photo.get('photo_url')%>"
+                      alt="<%=photo.get('description')%>" height=50px width=80px>
+                </div>
+              <% });%>
+            <% } %>
+          </div>
+
+          <div class="private-btn">
+            <button class="private" ps_id="<%=publicshare.id%>">Make Private</button>
+          </div>
+        </div>
+
+
+      <% }); %>
     </div>
   </div>
 </div>
+
 

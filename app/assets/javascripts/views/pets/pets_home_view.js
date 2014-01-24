@@ -1,7 +1,7 @@
 FosterPet.Views.PetsHomeView = Backbone.View.extend({
   events: {
-    "click button.follow" : "follow",
-    "click button.unfollow" : "unfollow",
+    "click button.btn-follow" : "follow",
+    "click button.btn-unfollow" : "unfollow",
   },
 
   initialize: function() {
@@ -27,6 +27,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
       success:function(object) {
         $(event.target).parents('.following').children('.unfollow').attr('id', object.id)
         that._toggleStatus(event);
+        that.collection.get($(event.target).attr('pet_id')).set('following', following);
       }
     });
   },
@@ -34,6 +35,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
   unfollow: function(event) {
     var following = this._setupObject(event);
     following.destroy();
+    this.collection.get($(event.target).attr('pet_id')).unset('following');
     this._toggleStatus(event);
   },
 

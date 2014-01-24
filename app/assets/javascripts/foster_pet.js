@@ -11,7 +11,7 @@ window.FosterPet = {
     var approve = new FosterPet.Collections.ApprovePosts();
     var publicPosts = new FosterPet.Collections.PublicShares();
     var userGallery = new FosterPet.Collections.UserGalleryPhotos();
-    var $rootEl = $('.content');
+    var $rootEl = $('.row-fluid');
 
     pets.fetch({
       remove: false,
