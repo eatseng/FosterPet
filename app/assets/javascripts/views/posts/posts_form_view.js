@@ -10,12 +10,10 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     this.post_collection = options.post_collection;
   },
 
-  formStructure: JST['posts/form_structure'],
   template: JST['posts/form'],
   photoTemplate: JST['photo/form'],
 
   render: function() {
-    // this.$el.html(this.formStructure());
     var that = this;
     this.pet_collection.fetch({
       remove: false,
@@ -28,10 +26,6 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
         that.$el.html(renderedContent);
       }
     });
-    //this.$('.form').html(renderedContent);
-    //this.$('.photo').html(this.photoTemplate());
-
-    // $('.typeahead').typeahead()
     return this;
   },
 
@@ -57,7 +51,7 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
 
   addPhoto: function(event) {
     event.preventDefault();
-    $('.photo_container').append(this.photoTemplate());
+    $('.photo_form_container').append(this.photoTemplate());
     $(event.target).html("Add Another Photo");
   }
 });

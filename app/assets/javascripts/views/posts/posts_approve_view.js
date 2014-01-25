@@ -1,7 +1,8 @@
 FosterPet.Views.PostsApproveView = Backbone.View.extend({
   events: {
     "click button.public" : "makePublic",
-    "click button.private" : "makePrivate"
+    "click button.private" : "makePrivate",
+    "click img.post_photo" : "photo"
   },
 
   initialize: function(options) {
@@ -36,5 +37,12 @@ FosterPet.Views.PostsApproveView = Backbone.View.extend({
     var postshare = new FosterPet.Models.Postshare();
     postshare.set({publicshare_id: $(event.target).attr('ps_id')});
     this.approve_collection.create(postshare, {})
+  },
+
+  photo: function() {
+    $('img.modal_photo').attr('src', $(event.target).attr('src'));
+    $('img.modal_photo').attr('alt', $(event.target).attr('alt'));
+    $('.modal-photo-title').text($(event.target).attr('alt'));
+    $('#pictureModal').modal();
   }
 });

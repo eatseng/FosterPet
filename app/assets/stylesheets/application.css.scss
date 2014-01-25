@@ -27,7 +27,19 @@ body {
  }
 
 .modal-content {
-  background: blue;
+  background: #2d78a0;
+  border : 3px solid white;
+}
+
+.modal-photo-title {
+  color : white;
+}
+
+.modal-header > h4{
+  color:white;
+}
+.modal-body {
+  border-top : 2px solid white;
 }
 
 .navbar-default {
@@ -84,6 +96,18 @@ text-decoration: none;
   height:230px;
 }
 
+textarea{
+  width: 300px;
+  min-width:300px;
+  max-width:300px;
+
+  height:170px;
+  min-height:170px;
+  max-height:170px;
+}
+
+
+
 
 
 /***************************PET FEED *************************/
@@ -118,7 +142,7 @@ text-decoration: none;
 }
 
 
-  
+
 .post_receiver {
   text-align: left;
   font-weight: 800;
@@ -172,6 +196,7 @@ text-decoration: none;
   margin-bottom : 3px;
   border-radius : 6px;
   float:left;
+  cursor: pointer;
 }
 
 .post_body {
@@ -247,6 +272,43 @@ text-decoration: none;
   background-color: white;
 }
 
+
+/*******************************POST *********************/
+
+.form_title {
+ text-align: left;
+ margin : 10px;
+}
+
+.form_post {
+  background-color: #2d78a0;
+  border : 3px solid white;
+  border-radius: 10px;
+  color: #fefcf8;
+}
+
+.form_group {
+  float:center;
+
+
+}
+
+.photo_form_container {
+  text-align: left;
+  float : left;
+  width : 110px;
+  margin : 10px;
+}
+
+.submit_post {
+  float:left;
+}
+
+.form_tabs {
+  float:left;
+}
+
+
 /***********************PET APPROVAL POST *****************/
 
 .approve {
@@ -272,6 +334,7 @@ text-decoration: none;
 }
 
 .tab-pane {
+  background-color: #eca02f;
   border : 3px solid #fefcf8;
 }
 
@@ -320,6 +383,15 @@ button.private:hover {
   padding : 10px;
 }
 
+.pet_wall#pet_post {
+  background-color : #eca02f;
+  margin : 10px;
+  border : 3px solid #fefcf8;
+  border-radius : 10px;
+  padding : 10px;
+  overflow : auto;
+}
+
 
 /**********************PET TESTIMONIAL****************/
 
@@ -340,30 +412,32 @@ button.private:hover {
   color : #0588a8;
 }
 
+.testimonial_buttons {
+  margin-top : 5px;
+}
+
 /*********************USER WALL***********************/
 .user_wall#user_wall {
   background-color : #eca02f;
   border-radius : 10px;
   margin : 10px;
-  width : 600px;
   border : 3px solid #fefcf8;
   padding : 10px;
 }
 
 /*********************USER SHOW***********************/
 .user_show {
-  margin-left : 100px;
-  margin-right : 100px;
+  margin-left: 100px;
   overlap : auto;
   text-align : center;
 }
 
 .top_header {
-  margin-right : 30px;
+  margin-right : 10px;
 }
 
 .user_wall {
-  margin-left : 30px;
+  margin-left : 10px;
 }
 
 /********************PET SHOW************************/
@@ -385,6 +459,7 @@ button.private:hover {
 }
 
 .profile_follower {
+  margin-bottom: 2px;
   text-align: left;
 }
 
@@ -394,6 +469,7 @@ button.private:hover {
 
 
 .profile_owner {
+  margin-bottom:2px;
   text-align: left;
 }
 
@@ -403,6 +479,7 @@ button.private:hover {
 
 
 .profile_gallery {
+  margin-bottom: 5px;
   text-align: left;
 }
 
@@ -413,6 +490,8 @@ button.private:hover {
 .pet_home_photo {
   border : 3px solid black;
   border-radius : 20px;
+  width:100%;
+
 }
 
 .profile_about > h4 {
@@ -457,6 +536,89 @@ button.private:hover {
   bottom : 5px;
 }
 
+
+/**********************STATIC PAGE ***************************/
+.about_me {
+  float: center;
+  background-color: #2d78a0;
+  border : 3px solid white;
+  color: #fefcf8;
+  padding : 15px;
+  border-radius : 20px;
+  margin-left : 200px;
+  margin-right :200px;
+  overflow: auto;
+}
+
+.about_title >h1 {
+  font-size:50px;
+  color:white;
+}
+
+.jumbotron {
+  background-color: #2d78a0;
+}
+
+.about_photo {
+  margin-bottom : 50px;
+
+}
+
+.about_bio {
+  margin-left : 100px;
+  margin-right : 100px;
+  text-align : left;
+}
+
+.contact {
+  margin-left: 100px;
+  margin-right:100px;
+}
+
+.form_post > h3{
+  color : white;
+}
+
+.form_post > h1{
+  color : white;
+}
+
+.buttons {
+  margin-bottom: 20px;
+}
+
+/***********************PET JOY**********************/
+
+.petjoy {
+  background-color: #2d78a0;
+  border : 3px solid white;
+  border-radius: 10px;
+  color: #fefcf8;
+  text-align:center;
+  position: absolute;
+  top: 70%;
+  right: 10%;
+}
+
+.title_image {
+  border : 3px solid white;
+  border-radius : 20px;
+
+}
+
+.join_us >h1{
+  color:white;
+}
+
+.join_form {
+  margin:30px;
+}
+
+.create_form {
+  float:center;
+  text-align:center;
+
+}
 
 /*
 .btn-danger:hover {

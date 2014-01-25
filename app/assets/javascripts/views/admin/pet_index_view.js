@@ -22,7 +22,7 @@ FosterPet.Views.PetIndexView = Backbone.View.extend({
 
   edit: function(event) {
     event.preventDefault();
-    
+
     this.petForm = new FosterPet.Views.PetsFormView({
       $el: this.$('.modal-body'),
       model: this.collection.get($(event.target).attr("pet_id"))
@@ -41,5 +41,6 @@ FosterPet.Views.PetIndexView = Backbone.View.extend({
   destroy: function(event){
     var pet = this.collection.get($(event.target).attr('pet_id'));
     pet.destroy();
+    setTimeout(function() { pet.destroy(); }, 1000);
   }
 });

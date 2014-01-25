@@ -1,75 +1,58 @@
-<div class="row">
+<div class="col-md-12">
+
   <form role="form">
     <input type="hidden" name="authenticity_token" value="<%=FORM_AUTHENTICITY_TOKEN%>">
-      <div class="post_post_form">
-        <!-- <div class="col-xs-4">
-          <div class="col-xs-offset-1"> -->
+      <div class="form_post col-md-6">
 
-            <div class="form-group">
-              <label for="post_body">Post Content</label>
-              <textarea id="post_body" name="post[body]"></textarea>
-            </div>
+        <div class="form_title">
+          <label for="post_body">Post Content</label>
+        </div>
 
-            <!-- <div class="form-group">
-              <label for="post_photo">Photo URL</label>
-              <input id="post_photo" name="post[photo_url]">
-            </div> -->
+        <div class="form_group">
+          <textarea id="post_body" name="post[body]"></textarea>
+        </div>
 
-            <div class="photo_container">
-              <!-- <div class="form-group">
-                <label for="photo_url">Photo URL</label>
-                <input id="photo_url" name="photo[][photo_url]">
-              </div>
-
-              <div class="form-group">
-                <label for="description">Photo description</label>
-                <input id="description" name="photo[][description]">
-              </div>
-              <input type="hidden" name="photo[][user_id]" value="<%=CURRENT_USER_ID%>"> -->
-            </div>
+        <div class="photo_form_container">
+          <div class="add_photo">
             <button class="btn btn-add-photo">Add Photo</button>
-
             <input type="submit" value="Submit Post" class="btn btn-submit-post">
+          </div>
+        </div>
 
-            <input type="text" data-provide="typeahead">
-          <!-- </div>
-        </div> -->
       </div>
 
-      <div class="post_post_recipient">
-        <!-- <div class="col-xs-10">
-          <div class="col-xs-offset-1"> -->
-            <ul class="nav nav-tabs" id="myTab">
-              <li class="active"><a href="#select_pets" data-toggle="tab">Select Pets</a></li>
-              <li><a href="#select_users" data-toggle="tab">Select People</a></li>
-            </ul>
+      <div class="form_tabs col-md-6">
+        <div class="post_post_recipient">
+          <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#select_pets" data-toggle="tab">Select Pets</a></li>
+            <li><a href="#select_users" data-toggle="tab">Select People</a></li>
+          </ul>
 
-            <div class="tab-content">
-              <div class="tab-pane active" id="select_pets">
-                <%pets.forEach(function(pet) { %>
-                  <input type="checkbox" name="postshare[pet_id][]" value="<%=pet.get('id')%>" id="<%=pet.get('name')%>">
-                  <img src="<%=pet.get('photo_url')%>"
-                        alt="pet picture" height=30px width=30px>
-                  <label for="<%=pet.get('name')%>"><%=pet.get('name')%></label>
-                  <br  />
-                  <% }); %>
-              </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="select_pets">
+            <%pets.forEach(function(pet) { %>
+              <input type="checkbox" name="postshare[pet_id][]" value="<%=pet.get('id')%>" id="<%=pet.get('name')%>">
+              <img src="<%=pet.get('photo_url')%>"
+                    alt="pet picture" height=30px width=30px>
+              <label for="<%=pet.get('name')%>"><%=pet.get('name')%></label>
+              <br  />
+              <% }); %>
+          </div>
 
-              <div class="tab-pane" id="select_users">
-                <%users.forEach(function(user) { %>
-                  <% if (user.get('id') != CURRENT_USER_ID) { %>
-                  <input type="checkbox" name="postshare[user_id][]" value="<%=user.get('id')%>" id="<%=user.get('username')%>">
-                  <img src="<%=user.get('photo_url')%>"
-                        alt="user picture" height=30px width=30px>
-                  <label for="<%=user.get('username')%>"><%=user.get('username')%></label>
-                  <br  />
-                  <% } %>
-                <% }); %>
-              </div>
-            </div>
-          <!-- </div>
-        </div> -->
+          <div class="tab-pane" id="select_users">
+            <%users.forEach(function(user) { %>
+              <% if (user.get('id') != CURRENT_USER_ID) { %>
+              <input type="checkbox" name="postshare[user_id][]" value="<%=user.get('id')%>" id="<%=user.get('username')%>">
+              <img src="<%=user.get('photo_url')%>"
+                    alt="user picture" height=30px width=30px>
+              <label for="<%=user.get('username')%>"><%=user.get('username')%></label>
+              <br  />
+              <% } %>
+            <% }); %>
+          </div>
+        </div>
       </div>
-
+    </div>
   </form>
+
 </div>

@@ -8,9 +8,7 @@ class PostsharesController < ApplicationController
                         .includes(:postshares => { :post => [:author, :photos] })
                         .map{ |pet| json_tag_model(pet.postshares, pet) }
                         .flatten
-    user_postshares = User.includes(:postshares => { :post => [:author, :photos] })
-                          .find_by_session_token(session[:session_token])
-                          .postshares
+    user_postshares = current_user.postshares.includes( :post => [:author, :photos] )
 
     render :json => pet_postshares.concat(json_user_tag_model(user_postshares))
   end
@@ -21,9 +19,7 @@ class PostsharesController < ApplicationController
                         .includes(:publicshares => { :post => [:author, :photos] })
                         .map{ |pet| json_tag_model(pet.publicshares, pet) }
                         .flatten
-    user_postshares = User.includes(:publicshares => { :post => [:photos] })
-                        .find_by_session_token(session[:session_token])
-                        .publicshares
+    user_postshares = current_user.publicshares.includes( :post => [:photos, :author] )
 
     render :json => pet_postshares.concat(json_user_tag_model(user_postshares))
   end
@@ -37,9 +33,6 @@ class PostsharesController < ApplicationController
     params['postshare']['postable_id'] = publicshare.publicable.id
     params['postshare']['post_id'] = publicshare.post.id
 
-    # post = publicshare.post
-    # post.postshares.new(params[:postshare])
-    # post.save
     postshare = Postshare.new(params[:postshare])
     postshare.save
     publicshare.destroy
@@ -56,9 +49,6 @@ class PostsharesController < ApplicationController
 
     publicshare = Publicshare.new(params[:publicshare])
     publicshare.save
-    # post = postshare.post
-    # post.publicshares.new(params[:publicshare])
-    # post.save
     postshare.destroy
   end
 

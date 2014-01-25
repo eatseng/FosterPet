@@ -1,4 +1,8 @@
 FosterPet.Views.UserWallView = Backbone.View.extend({
+  events: {
+    "click img.post_photo" : "photo"
+  },
+
   initialize: function(options) {
     this.user = options.user;
   },
@@ -18,5 +22,13 @@ FosterPet.Views.UserWallView = Backbone.View.extend({
       }
     });
     return this;
+  },
+
+  photo: function() {
+    $('img.modal_photo').attr('src', $(event.target).attr('src'));
+    $('img.modal_photo').attr('alt', $(event.target).attr('alt'));
+    $('.modal-photo-title').text($(event.target).attr('alt'));
+    debugger
+    $('#pictureModal').modal();
   }
 });

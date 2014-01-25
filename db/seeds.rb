@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:username => "Edward", :password => "password", 
+User.create(:username => "Edward", :password => "password",
             :photo_url => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ1uUDcC75ZGxRWELTdsVDmEYyeiWRVHOG8w2TJI7dK-A1kTv9cZQ")
 User.create(:username => "Guest", :password => "password",
             :photo_url => "http://most.themost10.netdna-cdn.com/wp-content/uploads/2012/08/Self-Portrait-By-Ira-Ira-Chernova-10.jpg")
@@ -112,12 +112,12 @@ Post.create(:body => "Also check out the post approval to make posts for your pe
 }
 
 #post 7
-Post.create(:body => "Awesome dogs!!", :user_id => "6")
-Photo.create(:photo_url => "http://placedog.com/400/300",
+Post.create(:body => "Awesome animals!!", :user_id => "6")
+Photo.create(:photo_url => "http://animals.loepr.com/wp-content/uploads/2013/06/Cute-animals-pictures-41.jpg",
+              :description => "Cool cat!", :user_id => "6")
+Photo.create(:photo_url => "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSrooHRmUQw5Gg16HQ9CglibJLWvfCTjvUX5rx-xzG4DiQDZhnWIA",
               :description => "Cool dogs!", :user_id => "6")
-Photo.create(:photo_url => "http://placedog.com/400/301",
-              :description => "Cool dogs!", :user_id => "6")
-Photo.create(:photo_url => "http://placedog.com/400/302",
+Photo.create(:photo_url => "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRNSWUKpXfCkaX9ctX1Psc783d7TEMhbl9hUXIBioQYcvmG31pxjw",
               :description => "Cool dogs!", :user_id => "6")
 Tagging.create(:photo_id => "7", :post_id => "7")
 Tagging.create(:photo_id => "8", :post_id => "7")
@@ -142,15 +142,15 @@ Postshare.create(:post_id => "8", :postable_id => "2", :postable_type => "Pet")
 
 
 #post9
-Post.create(:body => "Doggies!!", :user_id => "8")
-Photo.create(:photo_url => "http://placedog.com/400/310",
-              :description => "Nice dogs!", :user_id => "8")
-Photo.create(:photo_url => "http://placedog.com/400/311",
-              :description => "Nice dogs!", :user_id => "8")
-Photo.create(:photo_url => "http://placedog.com/400/312",
-              :description => "Nice dogs!", :user_id => "8")
-Photo.create(:photo_url => "http://placedog.com/400/313",
-              :description => "Nice dogs!", :user_id => "8")
+Post.create(:body => "Cute litte pigs!!", :user_id => "8")
+Photo.create(:photo_url => "http://babyanimalzoo.com/wp-content/uploads/2011/12/cute-baby-piglet.jpg",
+              :description => "Cute pig!", :user_id => "8")
+Photo.create(:photo_url => "http://babyanimalzoo.com/wp-content/uploads/2011/12/baby-pig.jpg",
+              :description => "Cute pig!", :user_id => "8")
+Photo.create(:photo_url => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ71xev9a2uYPDsSm2RYfuWUyPboiTqY7JhFclVgmGQhiAl7z8t",
+              :description => "Cute pig!", :user_id => "8")
+Photo.create(:photo_url => "http://www.coolanimalworld.com/gallery/var/albums/Cute-miniature-pigs'-happy-life/Cute%20miniature%20pigs'%20happy%20life%20(04).jpg?m=1382582253",
+              :description => "Cute Pig!", :user_id => "8")
 Tagging.create(:photo_id => "14", :post_id => "9")
 Tagging.create(:photo_id => "15", :post_id => "9")
 Tagging.create(:photo_id => "16", :post_id => "9")

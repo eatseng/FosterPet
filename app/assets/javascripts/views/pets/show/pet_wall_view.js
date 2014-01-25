@@ -7,7 +7,8 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
 
   events: {
     "click .btn-post" : "submitPost",
-    "click .btn-add-photo": "addPhoto"
+    "click .btn-add-photo": "addPhoto",
+    "click img.post_photo" : "photo"
   },
 
   template: JST['pets/petwall'],
@@ -43,6 +44,13 @@ FosterPet.Views.PetWallView = Backbone.View.extend({
 
   addPhoto: function(event) {
     event.preventDefault();
-    $('.photo_container').append(this.photoTemplate());
+    $('.photo_form_container').append(this.photoTemplate());
+  },
+
+  photo: function() {
+    $('img.modal_photo').attr('src', $(event.target).attr('src'));
+    $('img.modal_photo').attr('alt', $(event.target).attr('alt'));
+    $('.modal-photo-title').text($(event.target).attr('alt'));
+    $('#pictureModal').modal();
   }
 });
