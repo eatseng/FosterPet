@@ -21,6 +21,9 @@ FosterPet.Views.Feeds = Backbone.View.extend({
     $('img.modal_photo').attr('src', $(event.target).attr('src'));
     $('img.modal_photo').attr('alt', $(event.target).attr('alt'));
     $('.modal-photo-title').text($(event.target).attr('alt'));
+    $('#signUpModal').remove()
+    $('#signInModal').remove()
+    $('#guestModal').remove()
     $('#pictureModal').modal();
   }
 });
