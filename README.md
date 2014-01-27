@@ -1,13 +1,13 @@
 Pet Joy
 =======
 
-Facebook clone for Foster Pets
+[Facebook clone for Foster Pets](http://petjoy.herokuapp.com)
 
 Feature Summary
 ---------------
 1. User(Owner) can follow and unfollow any pets in the web application
 2. Any posts on the wall of the followed pet will show up on news feed
-3. Any posts made on pet wall will need to be made public by owner before showing up on news feed
+3. Any posts made on pet wall will need to be made public by owner before the post will show up on news feed
 4. User may tag multiple pictures to a post on a pet wall.
 
 Technology Used
