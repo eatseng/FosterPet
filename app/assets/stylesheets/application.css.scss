@@ -26,8 +26,12 @@ body {
   //background: radial-gradient(#a1e048, #6a942f);
  }
 
+.btn {
+  margin : 5px;
+}
+
 .modal-content {
-  background: #2d78a0;
+  //background: #2d78a0;
 }
 
 .navbar-default {
@@ -82,6 +86,10 @@ text-decoration: none;
 .home {
   width:200;
   height:230px;
+}
+
+.title_image_div {
+  width:100%;
 }
 
 
@@ -208,12 +216,12 @@ text-decoration: none;
   text-align: center;
 }
 
-.pet_home_photo {
+.pet_photo {
     //max-width: 100%;
     //height: auto;
     //width: auto\9; /* ie8 */
 
-  border : 5px solid #2D78A0;
+  border : 1px solid #2D78A0;
   border-radius : 20px;
   width:100%;
 }
@@ -227,7 +235,7 @@ text-decoration: none;
 }
 
 .btn-follow {
-  border : 2px solid black;
+  //border : 1px solid black;
   font-family : Helvetica;
   background-color: #ff8c06;
   font-size : 14px;
@@ -241,7 +249,7 @@ text-decoration: none;
 }
 
 .btn-unfollow {
-  border : 2px solid black;
+  //border : 1px solid black;
   font-family : Helvetica;
   background-color: #e0dad6;
   font-size : 14px;
@@ -253,6 +261,22 @@ text-decoration: none;
 .btn-unfollow:hover {
   background-color: white;
 }
+
+/***********************POST POST *************************/
+
+.post_post_recipient {
+  text-align:left;
+  width:100%;
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+
+.post_post {
+  margin-left:100px;
+  margin-right:100px;
+}
+
+
 
 /***********************PET APPROVAL POST *****************/
 
@@ -273,7 +297,7 @@ text-decoration: none;
 
 .tab-content {
   text-align:left;
-  height:500px;
+  height:400px;
   overflow-y: auto;
   overflow-x:hidden;
 }
@@ -320,12 +344,25 @@ button.private:hover {
 
 
 /************************PET WALL **********************/
+.pet_wall#pet_post {
+  background-color : #eca02f;
+  margin : 10px;
+  border : 3px solid #fefcf8;
+  border-radius : 10px;
+  padding : 10px;
+  height:180px
+}
+
 .pet_wall#pet_wall {
   background-color : #eca02f;
   margin : 10px;
   border : 3px solid #fefcf8;
   border-radius : 10px;
   padding : 10px;
+}
+
+.buttons {
+  margin:5px
 }
 
 
@@ -421,6 +458,7 @@ button.private:hover {
 .pet_home_photo {
   border : 3px solid black;
   border-radius : 20px;
+  width:100%;
 }
 
 .profile_about > h4 {
@@ -431,7 +469,6 @@ button.private:hover {
 .profile_about > p {
   color: white;
 }
-
 
 
 /*************************PET GALLERY *********************/
@@ -475,12 +512,16 @@ button.private:hover {
 }
 
 textarea {
-  width:400px;
+  width:80%;
+/*  width:500px;
+  min-width: 500px;
+  max-width: 500px;
+  
   height:150px;
+  min-height:150px;
+  max-height:150px;
+  */
 }
-
-
-
 
 
 .pet_show_view {
@@ -488,8 +529,26 @@ textarea {
 
 }
 
+/*********************PET JOY***************************/
+
+.petjoy_main {
+  margin-top : 30px;
+  margin-left : 30px;
+  margin-right : 70px;
+}
+
+.about_bio {
+  margin:30px;
+}
+
+.petjoy_tag {
+  margin-bottom: 40px;
+}
 
 
+.form_post > h3 {
+  color :white;
+}
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 font-family: inherit;

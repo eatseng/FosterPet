@@ -1,25 +1,30 @@
 <div class="row-fluid">
   <div class="col-md-12">
-    <div class="row">
+    <div class="row petjoy_main">
       <div class="col-md-5">
         <div class="title_image_div">
           <img class="title_image"
               src="http://www.boldsky.com/img/2012/07/27-child-pet-270712.jpg">
         </div>
       </div>
+      
+      <div class="petjoy col-md-7">
+        <div class="col-md-offset-5">
+    
+          <div class="petjoy_tag">
+            <h1>Create, Share, and Adopt a Pet!
+          </div>
 
-      <div class="petjoy_tag">
-        <h1>Create, Share, and Adopt a Pet!
-      </div>
-
-      <div class="petjoy col-md-4">
-        <div class="join_us">
-          <h1>Join Us<h1>
-        </div>
-        <div class="join_form">
-          <%@user = User.new%>
-          <%= render "users/form", :user => @user,
-                :action => users_url, :message => "Create User"%>
+          <div class="join_us">
+            <h1>Join Us!<h1>
+          </div>
+          <div class="post_container">
+            <div class="join_form">
+              <%@user = User.new%>
+              <%= render "users/form", :user => @user,
+                    :action => users_url, :message => "Create User"%>
+            </div>
+          </div>
         </div>
       </div>
     </div>

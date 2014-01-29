@@ -13,7 +13,7 @@
              value="<%= form_authenticity_token %>">
 
         <% if user.persisted? %>
-          <label><%=@user[:username]%> </label>
+          <h4><%=@user[:username]%> </h4>
           <input type="hidden" name="user[username]" value="<%=user[:username]%>">
           <input type="hidden" name="user[password]" value="password">
         <% else %>
