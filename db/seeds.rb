@@ -50,6 +50,10 @@ Pet.create(name: "Mavrick", photo_url: "http://placekitten.com/407", likes: "fly
             about: "one rebel cat")
 }
 
+3.times {|i|
+  Ownership.create(:user_id => 2, :pet_id => i+1)
+}
+
 10.times {|i|
   Following.create(:user_id => "1", :pet_id => i+1)
   Following.create(:user_id => "2", :pet_id => i+1)
