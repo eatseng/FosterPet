@@ -15,25 +15,25 @@
       <div class="post_container">
 
         <div class="post_author">
-          <a href="/#users/<%=post.get('author').first().get('id')%>">
+          <a href="/#users/<%=post.get('author').first().escape('id')%>">
             <img class="post_author_photo"
-                src="<%=post.get('author').first().get('photo_url')%>"
+                src="<%=post.get('author').first().escape('photo_url')%>"
                 alt="user picture" height=30px width=30px>
           </a>
 
-          <a href="/#users/<%=post.get('author').first().get('id')%>">
-            <%=post.get('author').first().get('username')%>
+          <a href="/#users/<%=post.get('author').first().escape('id')%>">
+            <%=post.get('author').first().escape('username')%>
           </a>
         </div>
 
         <div class="post_time">
-          <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+          <%=moment(post.escape('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
         </div>
 
         <div class="post_data">
           <% if(post.get('body')) { %>
             <div class="post_body">
-              <%=post.get('body')%>
+              <%=post.escape('body')%>
             </div>
           <% } %>
 
@@ -41,8 +41,8 @@
             <% post.get('photos').each(function(photo) { %>
               <div class="post_photo_div">
                 <img class="post_photo"
-                    src="<%=photo.get('photo_url')%>"
-                    alt="<%=photo.get('description')%>" height=50px width=80px>
+                    src="<%=photo.escape('photo_url')%>"
+                    alt="<%=photo.escape('description')%>" height=50px width=80px>
               </div>
             <% });%>
           <% } %>

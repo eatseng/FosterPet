@@ -9,7 +9,7 @@
   </div>
 
   <div class="testimonial_buttons">
-    <input type="hidden" name="testimonial[pet_id]" value="<%=pet.get('id')%>">
+    <input type="hidden" name="testimonial[pet_id]" value="<%=pet.escape('id')%>">
     <input type="submit" value="Leave a Testimonial" class="btn btn-testimonial">
   </div>
 </form>

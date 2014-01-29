@@ -3,13 +3,13 @@
     <div class="photo_container">
 
       <div class="photo_tag">
-        <a><%=photo.get('description')%></a>
+        <a><%=photo.escape('description')%></a>
       </div>
 
       <div class="gallery_photo_div">
         <a>
           <img class="gallery_photo" photo_id=<%=photo.id%> 
-              src="<%=photo.get('photo_url')%>" alt="<%=photo.get('description')%>"
+              src="<%=photo.escape('photo_url')%>" alt="<%=photo.escape('description')%>"
               height="100" width="100">
         </a>
       </div>

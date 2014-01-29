@@ -7,40 +7,40 @@
     <div class="post_container">
 
       <div class="post_receiver">
-        <a href="#pets/<%=feed.get('pet').first().get('id')%>">
+        <a href="#pets/<%=feed.get('pet').first().escape('id')%>">
           <img class="post_receiver_photo"
-                src="<%=feed.get('pet').first().get('photo_url')%>"
+                src="<%=feed.get('pet').first().escape('photo_url')%>"
                 alt="pet picture" height=40px width=40px>
         </a>
-        <a href="#pets/<%=feed.get('pet').first().get('id')%>">
-          <%=feed.get('pet').first().get('name')%>
+        <a href="#pets/<%=feed.get('pet').first().escape('id')%>">
+          <%=feed.get('pet').first().escape('name')%>
         </a>
         <span>received a post from:</span>
       </div>
 
       <div class="post_author">
-        <a href="#users/<%=feed.get('user').first().get('id')%>">
+        <a href="#users/<%=feed.get('user').first().escape('id')%>">
           <img class="post_author_photo"
-              src="<%=feed.get('user').first().get('photo_url')%>"
+              src="<%=feed.get('user').first().escape('photo_url')%>"
               alt="user picture" height=40px width=40px>
         </a>
-        <a href="#users/<%=feed.get('user').first().get('id')%>">
-          <%=feed.get('user').first().get('username')%>
+        <a href="#users/<%=feed.get('user').first().escape('id')%>">
+          <%=feed.get('user').first().escape('username')%>
         </a>
       </div>
 
       <div class="post_time">
         <span>on </span>
-        <%=moment(feed.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+        <%=moment(feed.escape('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
       </div>
 
       <div class="post_data">
         <% if(feed.get('body')) { %>
           <div class="post_body">
             <span class="post_body_span">
-              <%=feed.get('user').first().get('username')%> says:
+              <%=feed.get('user').first().escape('username')%> says:
             </span>
-            "<%=feed.get('body')%>"
+            "<%=feed.escape('body')%>"
           </div>
         <% } %>
 
@@ -48,8 +48,8 @@
           <% feed.get('photos').each(function(photo) { %>
             <div class="post_photo_div">
               <img class="post_photo"
-                  src="<%=photo.get('photo_url')%>"
-                  alt="<%=photo.get('description')%>" height=50px width=80px>
+                  src="<%=photo.escape('photo_url')%>"
+                  alt="<%=photo.escape('description')%>" height=50px width=80px>
             </div>
           <% });%>
         <% } %>

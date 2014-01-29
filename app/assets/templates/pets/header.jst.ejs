@@ -1,5 +1,5 @@
 <div class="testimonial_title">
-    <h1 id="name"><%=pet.get('name')%></h2>
+    <h1 id="name"><%=pet.escape('name')%></h2>
 </div>
 
 <div class="profile_header span8">
@@ -15,12 +15,12 @@
   </div>
   <div class="profile_photo">
     <img class="pet_home_photo"
-      src="<%=pet.get('photo_url')%>", alt="<%=pet.get('name')%>"
+      src="<%=pet.escape('photo_url')%>", alt="<%=pet.escape('name')%>"
       >
   </div>
   <div class="profile_about">
     <h4 id="content_title">About This Pet :<h4>
-    <p id="content">"<%=pet.get('about')%>"</p>
+    <p id="content">"<%=pet.escape('about')%>"</p>
 
   </div>
 </div>

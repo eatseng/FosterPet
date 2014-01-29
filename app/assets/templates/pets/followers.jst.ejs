@@ -2,13 +2,13 @@
   <% pet.get('followers').forEach(function(follower){ %>
     <div class="photo_container">
       <div class="photo_tag">
-        <a href="#users/<%=follower.id%>"><%=follower.get('username')%></a>
+        <a href="#users/<%=follower.id%>"><%=follower.escape('username')%></a>
       </div>
 
       <div class="gallery_photo_div">
         <a href="#users/<%=follower.id%>">
           <img class="gallery_photo"
-          src="<%=follower.get('photo_url')%>" alt="<%=follower.get('username')%>"
+          src="<%=follower.escape('photo_url')%>" alt="<%=follower.escape('username')%>"
           height="100" width="100">
         </a>
       </div>

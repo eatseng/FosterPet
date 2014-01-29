@@ -1,9 +1,9 @@
 <div class="testimonial_title">
-  <h1 id="name"><%=user.get('username')%></h2>
+  <h1 id="name"><%=user.escape('username')%></h2>
 </div>
 <div class="profile_header">
   <!--<div class="profile_name">
-    <h2 id="name"><%=user.get('username')%></h2>
+    <h2 id="name"><%=user.escape('username')%></h2>
   </div>-->
   <div class="profile_follower">
     <a href="/#users/<%=user.id%>/following_pets">Followings: <%=user.get('following_pets').length%></a>
@@ -16,7 +16,7 @@
   </div>
   <div class="profile_photo">
       <img class="pet_home_photo"
-          src="<%=user.get('photo_url')%>", alt="<%=user.get('username')%>"
+          src="<%=user.escape('photo_url')%>", alt="<%=user.escape('username')%>"
           >
 
   </div>

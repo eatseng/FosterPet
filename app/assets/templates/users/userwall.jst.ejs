@@ -15,34 +15,34 @@
             <img class="post_author_photo"
                  src="<%=user.get('photo_url')%>" alt="user picture"
                  height=30px width=30px>
-             <span><%=user.get('username')%> Wrote on the Wall of : </span>
+             <span><%=user.escape('username')%> Wrote on the Wall of : </span>
            </div>
           <% } else { %>
-              <a href="/#users/<%=post.get('author').first().get('id')%>">
+              <a href="/#users/<%=post.get('author').first().escape('id')%>">
                 <img class="post_author_photo"
-                  src="<%=post.get('author').first().get('photo_url')%>"
+                  src="<%=post.get('author').first().escape('photo_url')%>"
                   alt="author picture" height=30px width=30px>
               </a>
-              <a href="/#users/<%=post.get('author').first().get('id')%>">
-                <%=post.get('author').first().get('username')%>
+              <a href="/#users/<%=post.get('author').first().escape('id')%>">
+                <%=post.get('author').first().escape('username')%>
               </a> <span> Wrote on the Wall of : </span>
             </div>
             <div class="post_receiver">
               <img class="post_receiver_photo"
-                  src="<%=user.get('photo_url')%>" alt="user picture"
+                  src="<%=user.escape('photo_url')%>" alt="user picture"
                   height=30px width=30px>
-              <%=user.get('username')%>
+              <%=user.escape('username')%>
             </div>
           <% } %>
 
           <% if (post.get('user')) { %>
               <% post.get('user').forEach(function(user) { %>
                 <div class="post_receiver">
-                <a href="/#users/<%=user.id%>"><%=user.get('username')%></a>
+                <a href="/#users/<%=user.id%>"><%=user.escape('username')%></a>
 
                 <a href="/#users/<%=user.id%>">
                 <img class="post_receiver_photo"
-                      src="<%=user.get('photo_url')%>" alt="user picture"
+                      src="<%=user.escape('photo_url')%>" alt="user picture"
                       height=30px width=30px>
                 </a>
                 </div>
@@ -52,11 +52,11 @@
           <% if (post.get('pet')) { %>
             <% post.get('pet').forEach(function(pet){ %>
               <div class="post_receiver">
-                <a href="/#pets/<%=pet.id%>"><%=pet.get('name')%></a>
+                <a href="/#pets/<%=pet.id%>"><%=pet.escape('name')%></a>
 
                 <a href="/#pets/<%=pet.id%>">
                 <img class="post_receiver_photo"
-                      src="<%=pet.get('photo_url')%>" alt="pet picture"
+                      src="<%=pet.escape('photo_url')%>" alt="pet picture"
                       height=30px width=30px>
                 </a>
               </div>
@@ -64,14 +64,18 @@
            <% } %>
 
           <div class="post_time">
-            <%=moment(post.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+            <%=moment(post.escape('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
           </div>
 
 
           <div class="post_data">
             <% if(post.get('body')) { %>
               <div class="post_body">
-                <%=user.get('username')%> said: "<%=post.get('body')%>"
+                <% if(post.get('author')) { %>
+                  <%=post.get('author').first().escape('username')%> said: "<%=post.escape('body')%>"
+                <% } else { %>
+                  <%=user.escape('username')%> said: "<%=post.escape('body')%>"
+                <% } %>
               </div>
             <% } %>
 
@@ -79,8 +83,8 @@
               <% post.get('photos').each(function(photo) { %>
                 <div class="post_photo_div">
                   <img class="post_photo"
-                      src="<%=photo.get('photo_url')%>"
-                      alt="<%=photo.get('description')%>" height=50px width=80px>
+                      src="<%=photo.escape('photo_url')%>"
+                      alt="<%=photo.escape('description')%>" height=50px width=80px>
                 </div>
               <% });%>
             <% } %>
@@ -88,7 +92,7 @@
             <% if(post.get('photo_url')) { %>
               <div class="post_photo_div">
                 <img class="post_photo"
-                    src="<%=post.get('photo_url')%>" alt="post picture"
+                    src="<%=post.escape('photo_url')%>" alt="post picture"
                     height=300px width=480px>
               </div>
             <% } %>

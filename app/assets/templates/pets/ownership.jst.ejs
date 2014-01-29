@@ -2,12 +2,12 @@
   <% pet.get('owners').forEach(function(owner){ %>
     <div class="photo_container">
       <div class="photo_tag">
-        <a href="#users/<%=owner.id%>"><%=owner.get('username')%></a>
+        <a href="#users/<%=owner.id%>"><%=owner.escape('username')%></a>
       </div>
       <div class="gallery_photo_div">
         <a href="#users/<%=owner.id%>">
           <img class="gallery_photo"
-            src="<%=owner.get('photo_url')%>" alt="<%=owner.get('username')%>"
+            src="<%=owner.escape('photo_url')%>" alt="<%=owner.escape('username')%>"
             height="100" width="100">
         </a>
       </div>

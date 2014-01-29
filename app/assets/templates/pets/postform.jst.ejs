@@ -12,7 +12,7 @@
         <div class="photo_form_container">
         </div>
       </div>
-      <input type="hidden" name="postshare[pet_id][1]" value="<%=pet.get('id')%>">
+      <input type="hidden" name="postshare[pet_id][1]" value="<%=pet.escape('id')%>">
       <div class="row">
         <div class="buttons">
           <button class="btn btn-add-photo">Add Photo</button>

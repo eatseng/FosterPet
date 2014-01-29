@@ -12,17 +12,17 @@
       <div class="post_container">
         <div class="post_author">
           <img class="post_author_photo" 
-              src="<%=testimonial.get('user').get('photo_url')%>"
+              src="<%=testimonial.get('user').escape('photo_url')%>"
               alt="user picture" height=30px width=30px>
-          <%=testimonial.get('user').get('username')%>
+          <%=testimonial.get('user').escape('username')%>
         </div>
         <div class="post_time">
-          <%=moment(testimonial.get('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
+          <%=moment(testimonial.escape('created_at')).format("dddd, MMMM Do YYYY, h:mm:ss a")%>
         </div>
         <div class="post_data">
           <% if(testimonial.get('body')) { %>
             <div class="post_body">
-              <%=testimonial.get('body')%>
+              <%=testimonial.escape('body')%>
             </div>
           <% } %>
         </div>

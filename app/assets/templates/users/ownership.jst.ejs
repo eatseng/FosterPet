@@ -2,12 +2,12 @@
   <% user.get('owned_pets').forEach(function(pet){ %>
     <div class="photo_container">
       <div class="photo_tag">
-        <a href="#pets/<%=pet.id%>"><%=pet.get('name')%></a>
+        <a href="#pets/<%=pet.id%>"><%=pet.escape('name')%></a>
       </div>
       <div class="gallery_photo_div">
         <a href="#pets/<%=pet.id%>">
           <img class="gallery_photo"
-                src="<%=pet.get('photo_url')%>" alt="<%=pet.get('name')%>"
+                src="<%=pet.escape('photo_url')%>" alt="<%=pet.escape('name')%>"
                 height="100" width="100">
         </a>
       </div>

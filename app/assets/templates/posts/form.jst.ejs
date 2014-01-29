@@ -18,10 +18,11 @@
             <div class="tab-content">
               <div class="tab-pane active" id="select_pets">
                 <%pets.forEach(function(pet) { %>
-                  <input type="checkbox" name="postshare[pet_id][]" value="<%=pet.get('id')%>" id="<%=pet.get('name')%>">
-                  <img src="<%=pet.get('photo_url')%>"
+                  <input type="checkbox" name="postshare[pet_id][]" value="<%=pet.escape('id')%>" 
+                            id="<%=pet.escape('name')%>">
+                  <img src="<%=pet.escape('photo_url')%>"
                         alt="pet picture" height=30px width=30px>
-                  <label for="<%=pet.get('name')%>"><%=pet.get('name')%></label>
+                  <label for="<%=pet.escape('name')%>"><%=pet.escape('name')%></label>
                   <br  />
                   <% }); %>
               </div>
@@ -29,10 +30,11 @@
               <div class="tab-pane" id="select_users">
                 <%users.forEach(function(user) { %>
                   <% if (user.get('id') != CURRENT_USER_ID) { %>
-                  <input type="checkbox" name="postshare[user_id][]" value="<%=user.get('id')%>" id="<%=user.get('username')%>">
-                  <img src="<%=user.get('photo_url')%>"
+                  <input type="checkbox" name="postshare[user_id][]" value="<%=user.escape('id')%>"
+                           id="<%=user.escape('username')%>">
+                  <img src="<%=user.escape('photo_url')%>"
                         alt="user picture" height=30px width=30px>
-                  <label for="<%=user.get('username')%>"><%=user.get('username')%></label>
+                  <label for="<%=user.escape('username')%>"><%=user.escape('username')%></label>
                   <br  />
                   <% } %>
                 <% }); %>
