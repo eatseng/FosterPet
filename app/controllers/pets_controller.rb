@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_filter :require_current_user!, :only => [:index]
+  before_filter :require_current_user!, :only => [:index, :gallery]
   before_filter :require_admin_user!, :only => [:create, :update, :destroy]
 
   def index

@@ -19,8 +19,9 @@
            <span class="following can_unfollow">
          <% } %>
         <button class="btn btn-follow" pet_id="<%=pet.escape('id')%>">Follow</button>
-        <button class="btn btn-unfollow" <% if (pet.escape('following')) { %>
-            id="<%=pet.get('following').escape('id')%>"
+        <button class="btn btn-unfollow" 
+            <% if (pet.get('following')) { %>
+              id="<%=pet.get('following').escape('id')%>"
             <% } %>
             pet_id="<%=pet.escape('id')%>">Unfollow</button>
           </span>

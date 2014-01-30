@@ -25,7 +25,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
     var following = this._setupObject(event);
     following.save({}, {
       success:function(object) {
-        $(event.target).parents('.following').children('.unfollow').attr('id', object.id)
+        $(event.target).parents('.following').children('.btn-unfollow').attr('id', object.id)
         that._toggleStatus(event);
         that.collection.get($(event.target).attr('pet_id')).set('following', following);
       }
@@ -52,7 +52,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
     var currentPos = $(document).scrollTop();
     var windowHeight = $(window).height();
     var totalHeight = $(document).height();
-    var buffer = 100;
+    var buffer = 150;
     return ((currentPos + buffer) > (totalHeight - windowHeight))
   },
 
