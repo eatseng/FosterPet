@@ -5,7 +5,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
   },
 
   initialize: function() {
-    $(window).scroll(this.listenToScroll.bind(this));
+    $(window).on("scroll", this.listenToScroll.bind(this));
     this.listenTo(this.collection, "add remove", this.render);
   },
 
@@ -42,7 +42,7 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
   listenToScroll: function() {
     if (this.isAtBottom()) {
       if (!this.throttledCallback) {
-        this.throttledCallback = _.throttle(this.nextPage.bind(this), 200);
+        this.throttledCallback = _.throttle(this.nextPage.bind(this), 300);
       }
       this.throttledCallback();
     }
@@ -52,12 +52,13 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
     var currentPos = $(document).scrollTop();
     var windowHeight = $(window).height();
     var totalHeight = $(document).height();
-    var buffer = 150;
+    var buffer = 100;
     return ((currentPos + buffer) > (totalHeight - windowHeight))
   },
 
   nextPage: function() {
     var that = this;
+    console.log(that.collection.page)
     if (that.collection.page < that.collection.total_pages) {
       that.collection.fetch({
         data: {page: that.collection.page + 1},
@@ -70,6 +71,10 @@ FosterPet.Views.PetsHomeView = Backbone.View.extend({
 //
 //       }
 //     })
+  },
+
+  _close:function() {
+    $(window).unbind("scroll", FosterPet.Views.PetsHomeView.listenToScroll);
   },
 
   _toggleStatus: function(event) {

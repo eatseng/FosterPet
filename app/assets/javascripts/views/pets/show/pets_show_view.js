@@ -47,5 +47,8 @@ FosterPet.Views.PetsShowView = Backbone.View.extend({
         Backbone.history.navigate("", {trigger:true});
       }
     });
+  },
+
+  _close:function() {
   }
 });

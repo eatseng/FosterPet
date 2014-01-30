@@ -17,7 +17,7 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     var that = this;
     this.pet_collection.fetch({
       remove: false,
-      data: {page: that.pet_collection.total_pages},
+      data: {page: that.pet_collection.page},
       success: function(){
         var renderedContent = that.template({
           pets: that.pet_collection,
@@ -53,5 +53,9 @@ FosterPet.Views.PostsFormView = Backbone.View.extend({
     event.preventDefault();
     $('.photo_form_container').append(this.photoTemplate());
     $(event.target).html("Add Another Photo");
+  },
+
+  _close:function() {
   }
+
 });

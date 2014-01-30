@@ -225,15 +225,9 @@ FosterPet.Routers.Router = Backbone.Router.extend({
   },
 
   _swapView: function(view) {
+    this._currentView && this._currentView._close();
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
   }
-
-  // _templateNav: JST['nav_bar/navbar'],
-
-  // _swapNav: function() {
-  //   $('nav').remove();
-  //   this.$rootNav.html(this._templateNav());
-  // }
 });

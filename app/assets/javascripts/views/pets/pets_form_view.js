@@ -32,5 +32,8 @@ FosterPet.Views.PetsFormView = Backbone.View.extend({
         }
       });
     }
+  },
+
+  _close:function() {
   }
 });

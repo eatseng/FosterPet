@@ -30,8 +30,8 @@ FosterPet.Views.UserShowView = Backbone.View.extend({
       }  
     });
     return this;
+  },
+
+  _close:function() {
   }
-
-
-
 });

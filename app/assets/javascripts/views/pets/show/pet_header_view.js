@@ -18,6 +18,9 @@ FosterPet.Views.PetHeaderView = Backbone.View.extend({
       }
     });
     return this;
+  },
+
+  _close:function() {
   }
 
 });

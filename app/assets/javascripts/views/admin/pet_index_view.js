@@ -42,5 +42,8 @@ FosterPet.Views.PetIndexView = Backbone.View.extend({
     var pet = this.collection.get($(event.target).attr('pet_id'));
     //pet.destroy();
     setTimeout(function() { pet.destroy(); }, 1000);
+  },
+
+  _close:function() {
   }
 });

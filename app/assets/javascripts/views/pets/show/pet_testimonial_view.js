@@ -40,7 +40,9 @@ FosterPet.Views.PetTestimonialView = Backbone.View.extend({
         //Backbone.history.navigate("", {trigger:true});
       }
     });
+  },
 
+  _close:function() {
   }
 
 });

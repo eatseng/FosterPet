@@ -47,5 +47,8 @@ FosterPet.Views.PostsApproveView = Backbone.View.extend({
     $('#signInModal').remove()
     $('#guestModal').remove()
     $('#pictureModal').modal();
+  },
+
+  _close:function() {
   }
 });

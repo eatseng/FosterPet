@@ -18,6 +18,9 @@ FosterPet.Views.UserOwnerFollowingView = Backbone.View.extend({
   
   back: function() {
     window.history.back();
+  },
+
+  _close:function() {
   }
 
 });

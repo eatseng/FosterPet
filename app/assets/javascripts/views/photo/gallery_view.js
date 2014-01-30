@@ -25,5 +25,8 @@ FosterPet.Views.GalleryView = Backbone.View.extend({
     $('img.modal_photo').attr('alt', this.collection.get(photo_id).get('description'));
     $('.modal-photo-title').text(this.collection.get(photo_id).get('description'));
     $('#pictureModal').modal();
+  },
+
+  _close:function() {
   }
 });

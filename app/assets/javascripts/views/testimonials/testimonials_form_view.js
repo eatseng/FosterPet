@@ -36,5 +36,8 @@ FosterPet.Views.TestimonialsFormView = Backbone.View.extend({
         }
       });
     }
+  },
+
+  _close:function() {
   }
 });
