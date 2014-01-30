@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def as_json(options = {})
+    super(options.merge(:only => [:id, :username, :photo_url]))
+  end
+
   private
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token

@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :require_current_user!, :only => [:show]
+  before_filter :require_current_user!, :only => [:index, :gallery, :show]
   before_filter :require_no_current_user!, :only => [:create, :new]
 
   def index
-    @users = User.includes(:following_pets, :owned_pets)
-    render :json => user_data_to_json(@users)
+    @user = User.where('id = ?', current_user.id).includes(:following_pets, :owned_pets)
+    render :json => user_data_to_json(@user)
   end
 
   def gallery
