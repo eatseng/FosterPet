@@ -9,7 +9,7 @@
 User.create(:username => "Edward", :password => "password",
             :photo_url => "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ1uUDcC75ZGxRWELTdsVDmEYyeiWRVHOG8w2TJI7dK-A1kTv9cZQ")
 User.create(:username => "Guest", :password => "password",
-            :photo_url => "http://most.themost10.netdna-cdn.com/wp-content/uploads/2012/08/Self-Portrait-By-Ira-Ira-Chernova-10.jpg")
+            :photo_url => "http://naomivandoren.com/wp-content/uploads/2013/12/Self-Portrait-1-Naomi-VanDoren.jpg")
 User.create(:username => "admin", :password => "password", :account_type => "admin",
             :photo_url => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUWNE4VN1Evl_fRo9O6IICf6Ais_p8KurUG7GhFEvNVrLxzgUG7Q")
 User.create(:username => "Ned", :password => "password",
